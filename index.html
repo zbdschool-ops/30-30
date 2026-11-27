@@ -1,0 +1,1769 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>§ 30. Фінансова грамотність | Тренажер «Навігатор ризиків»</title>
+<style>
+:root{--primary:#1e3a8a;--primary-dark:#1e2a5e;--primary-light:#3b5ccc;--accent:#2563eb;--success:#16a34a;--danger:#dc2626;--warning:#f59e0b;--bg:#f1f5f9;--card:#fff;--text:#1e293b;--text-muted:#64748b;--border:#e2e8f0;--theory-blue:#dbeafe;--theory-green:#dcfce7;--theory-purple:#f3e8ff;--theory-orange:#ffedd5;--theory-pink:#fce7f3;--theory-yellow:#fef3c7;--theory-red:#fee2e2}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;background:linear-gradient(135deg,#f3f4f6,#e5e7eb);color:var(--text);line-height:1.6;min-height:100vh;overflow-x:hidden;font-size:16px}
+.top-progress-bar{position:fixed;top:0;left:0;right:0;height:4px;background:var(--border);z-index:1001}
+.top-progress-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--success));width:0%;transition:width .5s}
+.progress-widget{position:fixed;top:80px;right:20px;background:#fff;padding:10px 12px;border-radius:10px;box-shadow:0 2px 10px rgba(30,58,138,.12);z-index:1000;min-width:150px;cursor:pointer;transition:all .3s}
+.progress-widget:hover{transform:translateY(-2px);box-shadow:0 4px 16px rgba(30,58,138,.18)}
+.progress-widget-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;padding-bottom:8px;border-bottom:2px solid var(--border)}
+.progress-widget-title{font-weight:700;color:var(--primary);font-size:12px}
+.progress-widget-percentage{font-size:18px;font-weight:700;color:var(--accent)}
+.progress-widget-mini-map{display:flex;gap:4px;margin-top:8px}
+.mini-step{width:18px;height:18px;border-radius:50%;background:var(--border);display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:600;color:var(--text-muted);transition:all .3s}
+.mini-step.current{background:var(--warning);color:#fff;animation:pulse 1.5s infinite}
+.mini-step.completed{background:var(--success);color:#fff}
+.toast-container{position:fixed;top:100px;right:20px;z-index:1002;display:flex;flex-direction:column;gap:8px;max-width:calc(100vw - 40px)}
+.toast{background:#fff;padding:16px 20px;border-radius:12px;box-shadow:0 8px 24px rgba(30,58,138,.2);display:flex;align-items:center;gap:12px;animation:toastIn .4s;border-left:4px solid var(--success);min-width:280px;max-width:360px}
+.toast.hiding{animation:toastOut .4s forwards}
+@keyframes toastIn{from{opacity:0;transform:translateX(100px)}to{opacity:1;transform:translateX(0)}}
+@keyframes toastOut{from{opacity:1;transform:translateX(0)}to{opacity:0;transform:translateX(100px)}}
+.toast-icon{font-size:24px;flex-shrink:0}
+.toast-message{font-weight:600;color:var(--text);font-size:14px}
+.header{background:linear-gradient(135deg,#1e2a5e 0%,#1e3a8a 50%,#2563eb 100%);color:#fff;padding:24px 32px;border-radius:0 0 16px 16px;box-shadow:0 4px 16px rgba(30,58,138,.15);margin-top:4px}
+.header-content{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+.header h1{font-size:22px;font-weight:700;flex:1;min-width:200px}
+.header-buttons{display:flex;gap:12px;flex-wrap:wrap}
+.btn{padding:12px 24px;border-radius:10px;font-weight:600;cursor:pointer;transition:all .2s;border:none;font-size:16px;display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;white-space:nowrap}
+.btn-primary{background:var(--accent);color:#fff}
+.btn-primary:hover{background:#1d4ed8;box-shadow:0 4px 12px rgba(37,99,235,.3);transform:translateY(-2px)}
+.btn-secondary{background:#fff;color:var(--accent);border:2px solid var(--accent)}
+.btn-secondary:hover{background:#eff6ff}
+.btn-warning{background:var(--warning);color:#fff}
+.btn-warning:hover{background:#d97706}
+.btn-success{background:var(--success);color:#fff}
+.btn-success:hover{background:#15803d}
+.btn:focus{outline:3px solid #93c5fd;outline-offset:2px}
+.container{max-width:1200px;margin:0 auto;padding:40px 24px}
+.hero-unified{background:#fff;border-radius:16px;box-shadow:0 4px 16px rgba(30,58,138,.08);overflow:hidden;display:grid;grid-template-columns:1.3fr .7fr;align-items:stretch}
+.hero-illustration{background:#fff;padding:20px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
+.hero-illustration img{max-width:100%;height:auto;max-height:500px;object-fit:contain;border-radius:16px;display:block;margin:0 auto}
+.hero-illustration-title{color:var(--primary);font-size:20px;font-weight:700;margin-bottom:16px;padding-bottom:5px;border-bottom:2px solid var(--border);display:flex;align-items:center;justify-content:center;gap:8px}
+.hero-navigation{padding:20px 24px;display:flex;flex-direction:column;justify-content:center;border-left:1px solid #e2e8f0}
+.hero-navigation h2{color:var(--primary);font-size:16px;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid var(--border);display:flex;align-items:center;gap:8px}
+.step-navigation{display:flex;flex-direction:column;gap:8px;flex:1}
+.step-nav-item{padding:8px 10px;border-radius:6px;cursor:pointer;transition:all .3s;border:2px solid var(--border);display:flex;align-items:center;gap:10px}
+.step-nav-item:hover{border-color:var(--accent);background:#eff6ff;transform:translateX(4px)}
+.step-nav-item.active{border-color:var(--warning);background:#fef3c7}
+.step-nav-item.completed{border-color:var(--success);background:#dcfce7}
+.step-nav-number{width:26px;height:26px;border-radius:50%;background:var(--border);color:var(--text-muted);display:flex;align-items:center;justify-content:center;font-weight:700;flex-shrink:0;font-size:11px}
+.step-nav-item.active .step-nav-number{background:var(--warning);color:#fff}
+.step-nav-item.completed .step-nav-number{background:var(--success);color:#fff}
+.step-nav-content{flex:1;min-width:0}
+.step-nav-title{font-weight:600;color:var(--text);font-size:12px;line-height:1.3}
+.step-nav-status{font-size:10px;color:var(--text-muted)}
+.info-blocks{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:24px}
+.card{background:var(--card);border-radius:16px;padding:28px;box-shadow:0 4px 16px rgba(30,58,138,.08);margin-bottom:24px;transition:box-shadow .2s}
+.card:hover{box-shadow:0 8px 24px rgba(30,58,138,.14)}
+.card h2{font-size:22px;margin-bottom:16px;color:var(--primary)}
+.card h3{font-size:18px;margin-bottom:12px;color:var(--primary-dark)}
+.feature-list{list-style:none;padding:0}
+.feature-list li{padding:10px 0 10px 32px;position:relative;border-bottom:1px solid var(--border);font-size:15px}
+.feature-list li:last-child{border-bottom:none}
+.feature-list li::before{content:attr(data-icon);position:absolute;left:0;font-size:18px;top:10px}
+.tip-card{background:linear-gradient(135deg,#fef3c7,#fde68a);border-radius:12px;padding:16px;text-align:center;margin-top:24px;font-size:15px}
+.step-header{background:#fff;border-radius:16px;padding:24px;margin-bottom:24px;box-shadow:0 4px 16px rgba(30,58,138,.08)}
+.step-header-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:12px}
+.step-title{font-size:24px;color:var(--primary);font-weight:700}
+.step-badge{background:var(--warning);color:#fff;padding:6px 16px;border-radius:20px;font-weight:600;font-size:14px}
+.theory-compact{background:linear-gradient(135deg,var(--theory-blue),#bfdbfe);border:2px solid #93c5fd;border-radius:14px;padding:20px;margin:16px 0}
+.theory-compact h4{color:var(--primary);font-size:16px;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.theory-compact p{font-size:14px;line-height:1.6;margin-bottom:8px}
+.theory-compact ul{list-style:none;padding:0}
+.theory-compact ul li{padding:6px 0 6px 24px;position:relative;font-size:14px}
+.theory-compact ul li::before{content:attr(data-icon);position:absolute;left:0;font-size:16px;top:6px}
+.key-point{background:linear-gradient(135deg,#fef3c7,#fde68a);border:2px solid #fbbf24;border-radius:12px;padding:16px;margin:16px 0;text-align:center;font-weight:600;color:#78350f}
+.key-point::before{content:'💡';font-size:20px}
+.situation-layout{display:grid;grid-template-columns:1fr 1.2fr;gap:24px;margin:24px 0;align-items:start}
+.situation-illustration-left{background:linear-gradient(135deg,#eff6ff,#dbeafe);border:2px solid #93c5fd;border-radius:12px;padding:20px;text-align:center;display:flex;flex-direction:column;justify-content:center;align-items:center;min-height:240px}
+.situation-img{max-width:100%;height:auto;max-height:200px;object-fit:contain;border-radius:8px;margin-bottom:12px;display:block;margin-left:auto;margin-right:auto}
+.situation-caption{font-size:13px;color:var(--text-muted);font-style:italic;margin-top:8px}
+.situation-content-right{display:flex;flex-direction:column;gap:16px}
+.question-highlight{background:linear-gradient(135deg,#fef3c7,#fde68a);border:3px solid #f59e0b;border-radius:16px;padding:20px 24px;margin-bottom:20px;text-align:center;box-shadow:0 4px 16px rgba(245,158,11,.15);position:relative;overflow:hidden}
+.question-highlight-icon{font-size:48px;margin-bottom:8px;display:block}
+.question-highlight-text{font-size:20px;font-weight:700;color:#78350f;line-height:1.4;position:relative;z-index:1}
+.question-highlight-sub{font-size:14px;color:#92400e;margin-top:8px;font-style:italic;position:relative;z-index:1}
+.task-options{display:grid;gap:12px;margin:20px 0}
+.option{padding:16px;border:2px solid var(--border);border-radius:12px;cursor:pointer;transition:all .2s;display:flex;align-items:flex-start;gap:12px}
+.option:hover:not(.disabled){border-color:var(--accent);background:#eff6ff}
+.option.selected{border-color:var(--accent);background:#eff6ff}
+.option.correct{border-color:var(--success);background:#dcfce7}
+.option.incorrect{border-color:var(--danger);background:#fee2e2}
+.option.disabled{cursor:default;opacity:.8}
+.option-radio,.option-checkbox{width:24px;height:24px;border:2px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+.option-radio{border-radius:50%}
+.option-checkbox{border-radius:6px}
+.option.selected .option-radio,.option.selected .option-checkbox{border-color:var(--accent);background:var(--accent)}
+.option.selected .option-radio::after,.option.selected .option-checkbox::after{content:'✓';color:#fff;font-size:14px}
+.option.correct .option-radio,.option.correct .option-checkbox{border-color:var(--success);background:var(--success)}
+.option.correct .option-radio::after,.option.correct .option-checkbox::after{content:'✓';color:#fff;font-size:14px}
+.option.incorrect .option-radio,.option.incorrect .option-checkbox{border-color:var(--danger);background:var(--danger)}
+.option.incorrect .option-radio::after,.option.incorrect .option-checkbox::after{content:'✕';color:#fff;font-size:14px}
+.option-text{flex:1}
+.option-label{font-weight:600;margin-bottom:4px}
+.feedback{padding:16px;border-radius:12px;margin:16px 0;animation:fadeIn .3s}
+.feedback-success{background:#dcfce7;border:2px solid var(--success);color:#166534}
+.feedback-error{background:#fee2e2;border:2px solid var(--danger);color:#991b1b}
+.feedback-warning{background:#fef3c7;border:2px solid var(--warning);color:#92400e}
+.navigation{display:flex;justify-content:space-between;gap:12px;margin-top:32px;flex-wrap:wrap}
+.navigation .btn{flex:1;min-width:140px}
+.modal-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(15,23,42,.6);backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center;z-index:2000;opacity:0;visibility:hidden;transition:all .3s;padding:20px}
+.modal-overlay.active{opacity:1;visibility:visible}
+.modal{background:#fff;border-radius:16px;padding:32px;max-width:560px;width:100%;max-height:90vh;overflow-y:auto;box-shadow:0 12px 40px rgba(30,58,138,.22);transform:scale(.9);transition:transform .3s}
+.modal-overlay.active .modal{transform:scale(1)}
+.modal-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;gap:12px}
+.modal-header h2{color:var(--primary);font-size:22px}
+.modal-close{background:none;border:none;font-size:28px;cursor:pointer;color:var(--text-muted);width:40px;height:40px;display:flex;align-items:center;justify-content:center;border-radius:8px}
+.modal-close:hover{background:var(--bg);color:var(--text)}
+.text-center{text-align:center}
+.mb-24{margin-bottom:24px}
+.mt-24{margin-top:24px}
+.hidden{display:none!important}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
+@keyframes fadeIn{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:translateY(0)}}
+.step7-header{background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff;padding:32px;border-radius:16px;margin-bottom:24px;text-align:center;box-shadow:0 4px 16px rgba(245,158,11,.3)}
+.step7-header h2{font-size:28px;font-weight:800;margin-bottom:8px}
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;margin-bottom:24px}
+.stat-card{background:#fff;padding:20px;border-radius:12px;box-shadow:0 4px 12px rgba(30,58,138,.08);text-align:center}
+.stat-value{font-size:32px;font-weight:800;color:var(--primary)}
+.stat-label{font-size:14px;color:var(--text-muted);margin-top:4px}
+.progress-circle-container{display:flex;justify-content:center;align-items:center;margin:24px 0}
+.progress-circle{width:180px;height:180px;border-radius:50%;background:conic-gradient(var(--success) 0%,var(--bg) 0%);display:flex;justify-content:center;align-items:center;transition:background 1s;box-shadow:0 4px 16px rgba(30,58,138,.1)}
+.progress-circle-inner{width:140px;height:140px;background:#fff;border-radius:50%;display:flex;flex-direction:column;justify-content:center;align-items:center}
+.circle-percentage{font-size:40px;font-weight:800;color:var(--primary)}
+.circle-label{font-size:14px;color:var(--text-muted)}
+.level-badge{display:inline-flex;align-items:center;gap:12px;background:linear-gradient(135deg,#eff6ff,#dbeafe);border:2px solid #bfdbfe;padding:16px 24px;border-radius:12px;margin:16px 0}
+.level-badge-icon{font-size:40px}
+.level-badge-title{font-size:18px;font-weight:700;color:var(--primary)}
+.level-badge-desc{font-size:14px;color:var(--text-muted)}
+.skill-eval{margin-bottom:20px;padding-bottom:16px;border-bottom:1px solid var(--border)}
+.skill-eval:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.skill-title{font-weight:600;font-size:16px}
+.star-rating{display:flex;gap:8px;margin-top:8px}
+.star{font-size:24px;cursor:pointer;color:var(--border);transition:color .2s}
+.star:hover,.star.active{color:var(--warning)}
+.accordion-item{background:#fff;border:2px solid var(--border);border-radius:12px;margin:12px 0;transition:border-color .3s}
+.accordion-item:hover{border-color:var(--accent)}
+.accordion-item.active{border-color:var(--accent)}
+.accordion-header{padding:16px 20px;background:linear-gradient(135deg,#eff6ff,#dbeafe);cursor:pointer;font-weight:600;color:var(--primary);display:flex;justify-content:space-between;align-items:center;transition:all .2s;user-select:none;border-radius:10px}
+.accordion-header:hover{background:linear-gradient(135deg,#dbeafe,#bfdbfe)}
+.accordion-item.active .accordion-header{border-radius:10px 10px 0 0;background:linear-gradient(135deg,#dbeafe,#bfdbfe)}
+.accordion-icon{font-size:20px;transition:transform .3s;flex-shrink:0;margin-left:8px}
+.accordion-item.active .accordion-icon{transform:rotate(180deg)}
+.accordion-content{max-height:0;overflow:hidden;transition:max-height .4s ease-out}
+.accordion-item.active .accordion-content{max-height:5000px;overflow:visible}
+.accordion-body{padding:16px 20px;border-top:2px solid var(--border);background:#fff;border-radius:0 0 10px 10px}
+.budget-split{background:linear-gradient(135deg,#eff6ff,#dbeafe);border:2px solid #93c5fd;border-radius:16px;padding:24px;margin:16px 0}
+.budget-split h4{color:#1e40af;font-size:17px;margin-bottom:16px;text-align:center}
+.budget-split-header{display:flex;justify-content:space-between;align-items:center;background:#fff;padding:12px 16px;border-radius:10px;margin-bottom:16px;flex-wrap:wrap;gap:8px}
+.budget-split-amount{font-size:22px;font-weight:800;color:var(--success)}
+.budget-split-remaining{font-size:16px;font-weight:600;color:var(--primary)}
+.budget-categories{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-bottom:16px}
+.budget-cat{background:#fff;border:2px dashed var(--border);border-radius:12px;padding:14px;min-height:120px;transition:all .2s}
+.budget-cat h5{color:var(--primary);font-size:14px;margin-bottom:8px;text-align:center;padding:8px;border-radius:8px}
+.budget-cat.needs h5{background:linear-gradient(135deg,#dcfce7,#bbf7d0);color:#166534}
+.budget-cat.goals h5{background:linear-gradient(135deg,#dbeafe,#bfdbfe);color:#1e40af}
+.budget-cat.reserve h5{background:linear-gradient(135deg,#fef3c7,#fde68a);color:#78350f}
+.budget-cat.wants h5{background:linear-gradient(135deg,#f3e8ff,#ede9fe);color:#6d28d9}
+.budget-cat.drag-over{border-color:var(--accent);border-style:solid;background:#eff6ff}
+.budget-cat-total{font-size:12px;color:var(--text-muted);text-align:center;margin-top:6px;font-weight:600}
+.budget-bank{background:#fff;border:2px solid var(--border);border-radius:12px;padding:16px;margin-top:16px}
+.budget-bank h5{color:var(--primary);margin-bottom:12px;text-align:center}
+.budget-items{display:flex;flex-wrap:wrap;gap:8px}
+.budget-chip{background:linear-gradient(135deg,#fff,#f8fafc);border:2px solid var(--border);border-radius:10px;padding:8px 12px;cursor:pointer;transition:all .2s;font-size:13px;font-weight:600;display:inline-flex;align-items:center;gap:6px;user-select:none}
+.budget-chip:hover{border-color:var(--accent);transform:translateY(-2px);box-shadow:0 4px 12px rgba(37,99,235,.15)}
+.budget-chip.selected{background:linear-gradient(135deg,#fef3c7,#fde68a);border-color:var(--warning);box-shadow:0 0 0 3px rgba(245,158,11,.3)}
+.budget-chip.placed{opacity:.4;cursor:default}
+.budget-chip .price{color:var(--accent);font-weight:700}
+.budget-reset{margin-top:12px;padding:8px 16px;background:var(--bg);border:1px solid var(--border);border-radius:8px;cursor:pointer;font-size:14px;font-weight:600;color:var(--text);transition:all .2s}
+.budget-reset:hover{background:#e2e8f0}
+.sort-container{background:linear-gradient(135deg,#eff6ff,#dbeafe);border:2px solid #93c5fd;border-radius:14px;padding:20px;margin:16px 0}
+.sort-bank{min-height:80px;padding:12px;background:#fff;border:2px dashed var(--border);border-radius:10px;margin-bottom:20px}
+.sort-bank-title{font-weight:600;color:var(--primary);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.sort-slots{display:flex;flex-direction:column;gap:10px}
+.sort-slot{background:#fff;border:2px dashed var(--border);border-radius:10px;padding:12px;min-height:56px;display:flex;align-items:center;gap:12px;transition:all .2s;cursor:pointer}
+.sort-slot:hover{border-color:var(--accent);background:#eff6ff}
+.sort-slot.filled{border-style:solid;border-color:var(--accent);background:#eff6ff;cursor:pointer}
+.sort-slot.filled:hover{border-color:var(--danger);background:#fee2e2}
+.sort-slot.correct-pos{border-color:var(--success);background:#dcfce7}
+.sort-slot.incorrect-pos{border-color:var(--danger);background:#fee2e2}
+.sort-slot-number{width:36px;height:36px;border-radius:50%;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15px;flex-shrink:0}
+.sort-slot.filled .sort-slot-number{background:var(--accent)}
+.sort-slot-placeholder{color:var(--text-muted);font-size:14px;font-style:italic;flex:1}
+.sort-slot-content{flex:1;font-size:14px;font-weight:500;color:var(--text)}
+.sort-slot-remove{background:var(--danger);color:#fff;border:none;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:14px;font-weight:700;flex-shrink:0}
+.sort-slot-remove:hover{background:#991b1b}
+.classify-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:16px 0}
+.classify-col{background:#fff;border:2px solid var(--border);border-radius:12px;padding:16px;min-height:200px;transition:all .2s}
+.classify-col h4{margin-bottom:12px;font-size:15px;padding:10px;border-radius:8px;text-align:center}
+.classify-col.credits h4{background:linear-gradient(135deg,#fee2e2,#fecaca);color:#991b1b}
+.classify-col.spending h4{background:linear-gradient(135deg,#fef3c7,#fde68a);color:#78350f}
+.classify-col.gambling h4{background:linear-gradient(135deg,#f3e8ff,#ede9fe);color:#6d28d9}
+.classify-col.invest h4{background:linear-gradient(135deg,#dbeafe,#bfdbfe);color:#1e40af}
+.classify-item{background:#fff;padding:12px;border:2px solid var(--border);border-radius:8px;margin-bottom:8px;cursor:pointer;user-select:none;-webkit-user-select:none;transition:all .2s;font-size:14px;display:flex;align-items:center;gap:10px;min-height:48px}
+.classify-item:hover{border-color:var(--accent);background:#eff6ff}
+.classify-item.selected{border-color:var(--warning);background:#fef3c7;box-shadow:0 0 0 3px rgba(245,158,11,.3)}
+.classify-item.correct{border-color:var(--success);background:#dcfce7}
+.classify-item.incorrect{border-color:var(--danger);background:#fee2e2}
+.fraud-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin:16px 0}
+.fraud-card{background:#fff;border:2px solid var(--border);border-radius:12px;padding:16px;cursor:pointer;transition:all .3s;position:relative;overflow:hidden}
+.fraud-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:var(--card-accent,var(--accent))}
+.fraud-card:hover{transform:translateY(-3px);box-shadow:0 6px 16px rgba(0,0,0,.08);border-color:var(--accent)}
+.fraud-card.selected{border-color:var(--warning);box-shadow:0 0 0 3px rgba(245,158,11,.3)}
+.fraud-card.correct{border-color:var(--success);background:#dcfce7}
+.fraud-card.incorrect{border-color:var(--danger);background:#fee2e2}
+.fraud-card-icon{font-size:36px;margin-bottom:8px}
+.fraud-card-title{font-weight:700;color:var(--primary);font-size:15px;margin-bottom:6px}
+.fraud-card-desc{font-size:13px;color:var(--text);line-height:1.5}
+.tf-container{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:16px 0}
+.tf-card{background:#fff;border-radius:12px;padding:20px;border:2px solid var(--border);text-align:center;transition:all .3s;cursor:pointer}
+.tf-card:hover{transform:translateY(-3px);box-shadow:0 6px 16px rgba(0,0,0,.08)}
+.tf-card.selected{border-color:var(--warning);box-shadow:0 0 0 3px rgba(245,158,11,.3)}
+.tf-card.correct{border-color:var(--success);background:#dcfce7}
+.tf-card.incorrect{border-color:var(--danger);background:#fee2e2}
+.tf-card-icon{font-size:48px;margin-bottom:12px}
+.tf-card-title{font-weight:700;font-size:18px;margin-bottom:8px}
+.tf-card-desc{font-size:13px;color:var(--text-muted)}
+.tap-instruction{background:linear-gradient(135deg,#fef3c7,#fde68a);border:2px solid #fbbf24;border-radius:10px;padding:12px 16px;margin-bottom:16px;display:flex;align-items:center;gap:12px;font-size:14px;color:#78350f}
+.tap-instruction-icon{font-size:24px;flex-shrink:0}
+.tap-instruction strong{color:#78350f}
+.rules-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin:16px 0}
+.rule-card{background:#fff;border-radius:12px;padding:16px;border-left:4px solid var(--accent);transition:all .2s;cursor:pointer}
+.rule-card:hover{transform:translateY(-3px);box-shadow:0 6px 16px rgba(0,0,0,.08)}
+.rule-card h5{color:var(--primary);font-size:14px;margin-bottom:6px;display:flex;align-items:center;gap:8px}
+.rule-card p{font-size:13px;color:var(--text);line-height:1.5}
+.decision-tree{background:linear-gradient(135deg,#fef3c7,#fde68a);border:2px solid #fbbf24;border-radius:16px;padding:24px;margin:20px 0}
+.decision-tree h4{color:#78350f;font-size:17px;margin-bottom:16px;text-align:center}
+.decision-root{background:#fff;border:2px solid var(--warning);border-radius:12px;padding:14px;text-align:center;font-weight:700;color:#78350f;margin-bottom:16px;font-size:16px}
+.decision-branches{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.decision-branch{background:#fff;border-radius:12px;padding:14px;border-left:4px solid var(--accent);transition:all .3s;cursor:pointer;display:flex;align-items:center;justify-content:center;min-height:60px;text-align:center}
+.decision-branch:hover{transform:translateY(-3px);box-shadow:0 6px 16px rgba(0,0,0,.08)}
+.decision-branch.active{box-shadow:0 0 0 3px rgba(37,99,235,.3)}
+.decision-branch h5{color:var(--primary);font-size:15px;margin:0;display:flex;align-items:center;gap:8px;text-align:center;justify-content:center}
+.branch-need{border-left-color:#16a34a}
+.branch-opportunity{border-left-color:#2563eb}
+.branch-risk{border-left-color:#dc2626}
+.branch-consequence{border-left-color:#a855f7}
+.decision-details{background:#fff;border:2px dashed var(--border);border-radius:12px;padding:16px;margin-top:16px;min-height:100px;transition:all .3s}
+.decision-details.active{border-style:solid;border-color:var(--accent)}
+.decision-details h5{color:var(--primary);margin-bottom:8px;font-size:15px;display:flex;align-items:center;gap:8px}
+@media(max-width:968px){
+.hero-unified{grid-template-columns:1fr}
+.hero-illustration{border-bottom:2px dashed var(--accent);min-height:300px}
+.info-blocks{grid-template-columns:1fr}
+.progress-widget{display:none!important}
+.situation-layout{grid-template-columns:1fr}
+.classify-grid{grid-template-columns:1fr}
+.decision-branches{grid-template-columns:1fr}
+.question-highlight-text{font-size:17px}
+.question-highlight-icon{font-size:40px}
+.tf-container{grid-template-columns:1fr}
+}
+@media(max-width:768px){
+.header{padding:16px;border-radius:0 0 12px 12px}
+.header h1{font-size:16px}
+.header-buttons .btn{padding:10px 12px;font-size:14px}
+.container{padding:20px 16px}
+.card{padding:20px}
+.navigation .btn{width:100%;min-width:100%}
+.task-options{grid-template-columns:1fr!important}
+.accordion-header{padding:14px 16px;font-size:14px}
+.accordion-body{padding:14px 16px}
+.classify-item{padding:10px;font-size:13px}
+.sort-slot{padding:10px}
+.sort-slot-number{width:32px;height:32px;font-size:14px}
+.tap-instruction{font-size:13px;padding:10px 12px}
+}
+@media(max-width:480px){
+.step-title{font-size:18px}
+.card h2{font-size:18px}
+.option{padding:12px;font-size:13px}
+.question-highlight{padding:16px}
+.question-highlight-text{font-size:16px}
+.accordion-header{padding:12px 14px;font-size:13px}
+.accordion-body{padding:12px 14px}
+.accordion-icon{font-size:16px}
+}
+</style>
+</head>
+<body>
+<div class="top-progress-bar"><div class="top-progress-fill" id="topProgressBar"></div></div>
+<div class="progress-widget" id="progressWidget" onclick="showProgressModal()" tabindex="0" role="button" aria-label="Прогрес">
+<div class="progress-widget-header"><span class="progress-widget-title">📊 Прогрес</span><span class="progress-widget-percentage" id="widgetPercentage">0%</span></div>
+<div style="font-size:10px;color:var(--text-muted);margin-bottom:6px">Виконано: <strong id="widgetTasks">0/12</strong></div>
+<div class="progress-widget-mini-map" id="widgetMiniMap"></div>
+</div>
+<div class="toast-container" id="toastContainer"></div>
+<header class="header">
+<div class="header-content">
+<h1 id="headerTitle">💰 § 30. Фінансова грамотність</h1>
+<div class="header-buttons">
+<button class="btn btn-secondary" onclick="goToMainPage()">← До змісту</button>
+<button class="btn btn-secondary" onclick="showProgressModal()">📊 Прогрес</button>
+<button class="btn btn-secondary" onclick="showHelpModal()">❓ Як працювати?</button>
+</div>
+</div>
+</header>
+<!-- ГОЛОВНА -->
+<main class="container hidden" id="mainPage">
+<div class="hero-unified">
+<div class="hero-illustration">
+<div class="hero-illustration-title">💰 § 30. Фінансова грамотність</div>
+<img src="https://res.cloudinary.com/dmydvhkzr/image/upload/v1793101618/30-1_cmfyeu.png" alt="Фінансова грамотність">
+<p class="situation-caption">Фінансова грамотність — це не лише про гроші. Це про відповідальність, уміння робити вибір і дбати про власне майбутнє.</p>
+</div>
+<div class="hero-navigation">
+<h2>🧭 Навігація по кроках</h2>
+<div class="step-navigation" id="stepNavigation"></div>
+<button class="btn btn-primary mt-24" onclick="goToStep(1)" style="width:100%;font-size:17px;padding:14px">🚀 Розпочати параграф →</button>
+</div>
+</div>
+<div class="info-blocks">
+<div class="card" style="margin:0"><h3>🎯 У цьому параграфі ти:</h3>
+<ul class="feature-list">
+<li data-icon="💵">дізнаєшся, як раціонально управляти власними грошима</li>
+<li data-icon="🧠">з'ясуєш, що таке фінансове рішення та як його ухвалювати</li>
+<li data-icon="⚠️">розглянеш основні фінансові ризики</li>
+<li data-icon="🚨">навчишся розпізнавати фінансове шахрайство</li>
+<li data-icon="🛡️">сформулюєш правила фінансової безпеки</li>
+</ul></div>
+<div class="card" style="margin:0"><h3>📋 Що ти робитимеш?</h3>
+<ul class="feature-list">
+<li data-icon="✅">Розподілиш 4000 грн Назара між потребами</li>
+<li data-icon="💼">Розподілиш 5000 грн Марії за категоріями</li>
+<li data-icon="🎯">Допоможеш Назару ухвалити фінансове рішення</li>
+<li data-icon="🧩">Відновиш правильний порядок кроків рішення</li>
+<li data-icon="⚠️">Класифікуєш фінансові ризики</li>
+<li data-icon="🚨">Розпізнаєш види шахрайства</li>
+<li data-icon="🛡️">Обереш правила фінансової безпеки</li>
+<li data-icon="⭐">Оціниш свої вміння</li>
+</ul></div>
+</div>
+<div class="tip-card">💡 <strong>Пам'ятай:</strong> Фінансова грамотність — це щоденна відповідальність. Кожне твоє рішення впливає на майбутнє.</div>
+</main>
+<!-- КРОК 1: СТАРТОВЕ ЗАВДАННЯ -->
+<main class="container hidden" id="step1Page">
+<div class="step-header"><h2 class="step-title">🎯 Крок 1. Стартове завдання</h2></div>
+<section class="card">
+<div class="question-highlight">
+<span class="question-highlight-icon"></span>
+<div class="question-highlight-text">На початку місяця Назар отримав 4000 грн. Частину грошей він планував витратити на поточні потреби, а решту — відкласти. Друг запропонував йому «вигідно інвестувати» кошти, мама порадила створити фінансовий резерв, а в магазині саме розпочався розпродаж.</div>
+<div class="question-highlight-sub">Як, на твою думку, Назару варто розпорядитися грошима? Обґрунтуй своє рішення.</div>
+</div>
+<div class="situation-layout">
+<div class="situation-illustration-left">
+<img src="https://res.cloudinary.com/dmydvhkzr/image/upload/v1793101618/30-2_ubrnyd.png" alt="Назар і 4000 грн" class="situation-img">
+<p class="situation-caption">Обдуманий вибір — основа фінансової грамотності</p>
+</div>
+<div class="situation-content-right">
+<p style="margin:12px 0;color:var(--text-muted);font-style:italic">📌 <strong>Обери три пріоритетні дії для Назара:</strong></p>
+<div class="task-options" id="s1t1">
+<div class="option" data-correct="true" onclick="tog(this)" tabindex="0" role="checkbox"><div class="option-checkbox"></div><div class="option-text"><div class="option-label">💵 Покрити поточні потреби (транспорт, харчування, зв'язок)</div></div></div>
+<div class="option" data-correct="true" onclick="tog(this)" tabindex="0" role="checkbox"><div class="option-checkbox"></div><div class="option-text"><div class="option-label">🏦 Створити фінансовий резерв (відкласти частину)</div></div></div>
+<div class="option" data-correct="true" onclick="tog(this)" tabindex="0" role="checkbox"><div class="option-checkbox"></div><div class="option-text"><div class="option-label">🎯 Відкласти на конкретну фінансову ціль</div></div></div>
+<div class="option" data-correct="false" onclick="tog(this)" tabindex="0" role="checkbox"><div class="option-checkbox"></div><div class="option-text"><div class="option-label">🎰 «Вигідно інвестувати» все у друга без перевірки</div></div></div>
+<div class="option" data-correct="false" onclick="tog(this)" tabindex="0" role="checkbox"><div class="option-checkbox"></div><div class="option-text"><div class="option-label">🛍️ Витратити все на розпродажі, поки діють знижки</div></div></div>
+</div>
+<div id="s1t1f" class="feedback" style="display:none"></div>
+<div class="navigation">
+<button class="btn btn-secondary" onclick="goToMainPage()">← До змісту</button>
+<button class="btn btn-primary" onclick="chkStartTask()">✓ Перевірити</button>
+<button class="btn btn-success" onclick="goToStep(2)">Далі: Крок 2 →</button>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- КРОК 2: РАЦІОНАЛЬНЕ УПРАВЛІННЯ -->
+<main class="container hidden" id="step2Page">
+<div class="step-header"><div class="step-header-top"><h2 class="step-title">💵 Крок 2. Раціональне управління грошима</h2><span class="step-badge">2 завдання</span></div></div>
+<section class="card" id="s2Theory">
+<h2>📖 Теоретичний блок</h2>
+<div class="theory-compact" style="background:linear-gradient(135deg,#dbeafe,#bfdbfe);border-color:#93c5fd">
+<h4 style="color:#1e40af">💵 Раціональне управління грошима</h4>
+<p><strong>Раціонально управляти грошима</strong> — означає спочатку задовольнити поточні потреби, сформувати заощадження на майбутні цілі й фінансовий резерв, а решту коштів використати на власні бажання.</p>
+<p>Такий підхід допомагає уникати необдуманих витрат і почуватися фінансово впевненіше.</p>
+</div>
+<div class="key-point">💡 <strong>Важливо!</strong> Фінансові радники рекомендують відкладати приблизно <strong>10% доходу</strong>. Якщо зараз це неможливо — варто починати навіть із невеликої суми.</div>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin:20px 0">
+<div style="background:linear-gradient(135deg,#dcfce7,#bbf7d0);padding:16px;border-radius:12px;border-left:4px solid var(--success)">
+<div style="font-size:28px">1️⃣</div>
+<div style="font-weight:700;color:#166534;margin:6px 0">ПОТОЧНІ ПОТРЕБИ</div>
+<div style="font-size:13px;color:var(--text)">Обід у школі, проїзд, зошити, мобільний зв'язок, одяг за сезоном</div>
+</div>
+<div style="background:linear-gradient(135deg,#dbeafe,#bfdbfe);padding:16px;border-radius:12px;border-left:4px solid var(--accent)">
+<div style="font-size:28px">2️⃣</div>
+<div style="font-weight:700;color:#1e40af;margin:6px 0">ФІНАНСОВІ ЦІЛІ</div>
+<div style="font-size:13px;color:var(--text)">Новий телефон, подорож, навчальні курси</div>
+</div>
+<div style="background:linear-gradient(135deg,#fef3c7,#fde68a);padding:16px;border-radius:12px;border-left:4px solid var(--warning)">
+<div style="font-size:28px">3️⃣</div>
+<div style="font-weight:700;color:#78350f;margin:6px 0">ФІНАНСОВИЙ РЕЗЕРВ</div>
+<div style="font-size:13px;color:var(--text)">На непередбачені ситуації: ремонт, хвороба, термінові витрати</div>
+</div>
+<div style="background:linear-gradient(135deg,#f3e8ff,#ede9fe);padding:16px;border-radius:12px;border-left:4px solid #a855f7">
+<div style="font-size:28px">4️⃣</div>
+<div style="font-weight:700;color:#6d28d9;margin:6px 0">ВІЛЬНІ ВИТРАТИ</div>
+<div style="font-size:13px;color:var(--text)">Похід у кіно, кафе з друзями, ігри, приємне для себе</div>
+</div>
+</div>
+<div class="navigation"><button class="btn btn-secondary" onclick="goToMainPage()">← До змісту</button><button class="btn btn-primary" onclick="showS2('s2t1')">Далі: Завдання 1 →</button></div>
+</section>
+<section class="card hidden" id="s2t1">
+<h2>💼 Завдання 1. Розподіли 5000 грн Марії</h2>
+<div class="feedback feedback-warning mb-24">
+<strong>📌 Ситуація:</strong> Марія отримала 5000 грн у подарунок на день народження. Їй потрібно:<br>
+• придбати взуття — 1800 грн;<br>
+• відкласти на курс 3D-дизайну — 1500 грн;<br>
+• створити фінансовий резерв;<br>
+• залишити гроші на відпочинок і особисті витрати.
+</div>
+<div class="tap-instruction">
+<div class="tap-instruction-icon">👆</div>
+<div><strong>Як виконувати:</strong><br>
+1️⃣ Натисни на витрату у верхньому блоці — вона підсвітиться жовтим.<br>
+2️⃣ Натисни на потрібну категорію нижче — витрата потрапить туди.<br>
+3️⃣ Щоб повернути — натисни на неї в категорії.</div>
+</div>
+<div class="budget-split">
+<h4>💰 Розподіл 5000 грн за категоріями</h4>
+<div class="budget-split-header">
+<div><span style="font-size:13px;color:var(--text-muted)">💵 Всього:</span> <span class="budget-split-amount">5000 грн</span></div>
+<div><span style="font-size:13px;color:var(--text-muted)">📦 Розподілено:</span> <span class="budget-split-remaining" id="bsSpent">0 грн</span></div>
+</div>
+<div class="budget-categories">
+<div class="budget-cat needs" data-cat="needs" onclick="placeToCat('needs')"><h5>🛒 ПОТОЧНІ ПОТРЕБИ</h5><div id="catNeeds"></div><div class="budget-cat-total" id="totalNeeds">0 грн</div></div>
+<div class="budget-cat goals" data-cat="goals" onclick="placeToCat('goals')"><h5>🎯 МАЙБУТНІ ЦІЛІ</h5><div id="catGoals"></div><div class="budget-cat-total" id="totalGoals">0 грн</div></div>
+<div class="budget-cat reserve" data-cat="reserve" onclick="placeToCat('reserve')"><h5>🏦 РЕЗЕРВ</h5><div id="catReserve"></div><div class="budget-cat-total" id="totalReserve">0 грн</div></div>
+<div class="budget-cat wants" data-cat="wants" onclick="placeToCat('wants')"><h5>🎬 ВІЛЬНІ ВИТРАТИ</h5><div id="catWants"></div><div class="budget-cat-total" id="totalWants">0 грн</div></div>
+</div>
+<div class="budget-bank">
+<h5>📦 Витрати Марії (натисни, щоб обрати)</h5>
+<div class="budget-items" id="budgetBank"></div>
+</div>
+<div style="text-align:center;margin-top:12px"><button class="budget-reset" onclick="resetBudgetSplit()">🔄 Почати спочатку</button></div>
+</div>
+<div id="s2t1f" class="feedback" style="display:none"></div>
+<div class="navigation"><button class="btn btn-secondary" onclick="showS2('s2Theory')">← Назад</button><button class="btn btn-primary" onclick="chkBudgetSplit()">✓ Перевірити</button><button class="btn btn-success" onclick="showS2('s2t2')">Далі →</button></div>
+</section>
+<section class="card hidden" id="s2t2">
+<h2>⚠️ Завдання 2. Непередбачені витрати</h2>
+<div class="feedback feedback-warning mb-24">
+<strong>📌 Ситуація:</strong> У Марії зламався телефон, і їй терміново потрібно 700 грн на ремонт.<br>
+<strong>🎯 Питання:</strong> Звідки варто взяти цю суму, щоб не порушити фінансовий план?
+</div>
+<div class="situation-layout">
+<div class="situation-illustration-left">
+<img src="https://res.cloudinary.com/dmydvhkzr/image/upload/v1793101617/30-3_ztsr3a.png" alt="Зламаній телефон" class="situation-img">
+</div>
+<div class="situation-content-right">
+<div class="task-options" id="s2t2">
+<div class="option" data-correct="false" onclick="selRadio(this,'s2t2')" tabindex="0" role="radio"><div class="option-radio"></div><div class="option-text"><div class="option-label">🎯 Взяти з заощаджень на курс 3D-дизайну</div></div></div>
+<div class="option" data-correct="true" onclick="selRadio(this,'s2t2')" tabindex="0" role="radio"><div class="option-radio"></div><div class="option-text"><div class="option-label">🏦 Взяти з фінансового резерву — саме для цього він і створений</div></div></div>
+<div class="option" data-correct="false" onclick="selRadio(this,'s2t2')" tabindex="0" role="radio"><div class="option-radio"></div><div class="option-text"><div class="option-label">💳 Взяти в борг у друга</div></div></div>
+<div class="option" data-correct="false" onclick="selRadio(this,'s2t2')" tabindex="0" role="radio"><div class="option-radio"></div><div class="option-text"><div class="option-label">🏦 Оформити кредит у банку</div></div></div>
+</div>
+<div id="s2t2f" class="feedback" style="display:none"></div>
+</div>
+</div>
+<div class="navigation"><button class="btn btn-secondary" onclick="showS2('s2t1')">← Назад</button><button class="btn btn-primary" onclick="chkRadio('s2t2','s2t2f','step2_task2')">✓ Перевірити</button><button class="btn btn-success" onclick="goToStep(3)">Далі: Крок 3 →</button></div>
+</section>
+</main>
+<!-- КРОК 3: УХВАЛЕННЯ ФІНАНСОВИХ РІШЕНЬ -->
+<main class="container hidden" id="step3Page">
+<div class="step-header"><div class="step-header-top"><h2 class="step-title">🧠 Крок 3. Ухвалення фінансових рішень</h2><span class="step-badge">3 завдання</span></div></div>
+<section class="card" id="s3Theory">
+<h2>📖 Теоретичний блок</h2>
+<div class="theory-compact" style="background:linear-gradient(135deg,#dcfce7,#bbf7d0);border-color:#86efac">
+<h4 style="color:#166534">🧠 Фінансове рішення</h4>
+<p><strong>Фінансове рішення</strong> — це свідомий вибір з урахуванням потреб, можливостей, ризиків і наслідків.</p>
+<p>Фінансовий вибір впливає не лише на теперішні витрати, а й на майбутні можливості людини. Тому важливо оцінити ризики, передбачити наслідки та визначити, від якої іншої мети доведеться відмовитися.</p>
+</div>
+<div class="decision-tree">
+<h4>🎯 4 кроки обдуманого фінансового рішення</h4>
+<div class="decision-root">💰 ФІНАНСОВЕ РІШЕННЯ</div>
+<div class="decision-branches">
+<div class="decision-branch branch-need" onclick="showDecision('need')" tabindex="0" role="button" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}"><h5>❓ ПОТРЕБА</h5></div>
+<div class="decision-branch branch-opportunity" onclick="showDecision('opportunity')" tabindex="0" role="button" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}"><h5>💼 МОЖЛИВОСТІ</h5></div>
+<div class="decision-branch branch-risk" onclick="showDecision('risk')" tabindex="0" role="button" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}"><h5>⚠️ РИЗИКИ</h5></div>
+<div class="decision-branch branch-consequence" onclick="showDecision('consequence')" tabindex="0" role="button" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}"><h5>🎯 НАСЛІДКИ</h5></div>
+</div>
+<div class="decision-details" id="decisionDetails">
+<p style="color:var(--text-muted);font-style:italic;text-align:center">👆 Натисни на будь-який крок, щоб дізнатися більше</p>
+</div>
+</div>
+<div class="key-point">⚠️ <strong>Що може заважати обдуманому вибору:</strong> емоції, реклама, тиск оточення, поспіх. Ці чинники спонукають діяти швидко й не враховувати реальні можливості.</div>
+<div class="navigation"><button class="btn btn-secondary" onclick="goToMainPage()">← До змісту</button><button class="btn btn-primary" onclick="showS3('s3t1')">Далі: Завдання 1 →</button></div>
+</section>
+<section class="card hidden" id="s3t1">
+<h2>🎮 Завдання 1. Ситуація: Назар і музичний фестиваль</h2>
+<div class="feedback feedback-warning mb-24">
+<strong>📌 Ситуація:</strong> Назар має 2000 грн заощаджень. Він хоче поїхати з друзями на музичний фестиваль: квиток коштує 1200 грн, дорога — 500 грн, також потрібні гроші на харчування. Також Назар планує оплатити курси іноземної мови вартістю 1800 грн. Рішення потрібно ухвалити сьогодні, адже завтра квитки подорожчають.
+</div>
+<div class="situation-layout">
+<div class="situation-illustration-left">
+<img src="https://res.cloudinary.com/dmydvhkzr/image/upload/v1793101618/30-4_f1t4pk.png" alt="Назар і фестиваль" class="situation-img">
+</div>
+<div class="situation-content-right">
+<p style="margin:12px 0;color:var(--text-muted);font-style:italic">🎯 <strong>Яке рішення найкраще враховує фінансові можливості Назара?</strong></p>
+<div class="task-options" id="s3t1">
+<div class="option" data-correct="false" onclick="selRadio(this,'s3t1')" tabindex="0" role="radio"><div class="option-radio"></div><div class="option-text"><div class="option-label">🎫 Купити квиток сьогодні, бо завтра буде дорожче, а курси відкласти</div></div></div>
+<div class="option" data-correct="false" onclick="selRadio(this,'s3t1')" tabindex="0" role="radio"><div class="option-radio"></div><div class="option-text"><div class="option-label">📚 Відмовитися від фестивалю й одразу оплатити курси</div></div></div>
+<div class="option" data-correct="true" onclick="selRadio(this,'s3t1')" tabindex="0" role="radio"><div class="option-radio"></div><div class="option-text"><div class="option-label">🤝 Знайти доступнішу альтернативу: дешевший фестиваль або відпочити локально, а гроші зберегти для курсів</div></div></div>
+<div class="option" data-correct="false" onclick="selRadio(this,'s3t1')" tabindex="0" role="radio"><div class="option-radio"></div><div class="option-text"><div class="option-label">💳 Взяти в борг у друзів, щоб встигнути на все</div></div></div>
+</div>
+<div id="s3t1f" class="feedback" style="display:none"></div>
+</div>
+</div>
+<div class="navigation"><button class="btn btn-secondary" onclick="showS3('s3Theory')">← Назад</button><button class="btn btn-primary" onclick="chkRadio('s3t1','s3t1f','step3_task1')">✓ Перевірити</button><button class="btn btn-success" onclick="showS3('s3t2')">Далі →</button></div>
+</section>
+<section class="card hidden" id="s3t2">
+<h2>🧩 Завдання 2. Віднови порядок кроків фінансового рішення</h2>
+<div class="tap-instruction">
+<div class="tap-instruction-icon">👆</div>
+<div><strong>Як виконувати:</strong><br>
+1️⃣ Натисни на крок у верхньому блоці — він підсвітиться жовтим.<br>
+2️⃣ Натисни на пронумерований слот (1–4) нижче — крок стане на своє місце.<br>
+3️⃣ Щоб повернути крок назад — натисни ✕ у слоті.</div>
+</div>
+<div class="sort-container">
+<div class="sort-bank">
+<div class="sort-bank-title">📦 Кроки ухвалення рішення (перемішані)</div>
+<div id="sortBank"></div>
+</div>
+<div>
+<div class="sort-bank-title">🎯 Правильний порядок (1 → 4)</div>
+<div class="sort-slots" id="sortSlots"></div>
+</div>
+</div>
+<div style="text-align:center;margin-top:12px"><button class="budget-reset" onclick="resetSort()">🔄 Перемішати знову</button></div>
+<div id="s3t2f" class="feedback" style="display:none"></div>
+<div class="navigation"><button class="btn btn-secondary" onclick="showS3('s3t1')">← Назад</button><button class="btn btn-primary" onclick="chkSort()">✓ Перевірити</button><button class="btn btn-success" onclick="showS3('s3t3')">Далі →</button></div>
+</section>
+<section class="card hidden" id="s3t3">
+<h2>✅❌ Завдання 3. Що заважає обдуманому вибору?</h2>
+<div class="feedback feedback-warning mb-24"><strong>📌 Інструкція:</strong> Для кожного твердження обери — чи є цей чинник перешкодою для обдуманого фінансового рішення.</div>
+<div class="accordion-item">
+<div class="accordion-header" onclick="toggleAccordion(this)"><span>📋 Емоції (радість, страх, ейфорія від знижки)</span><span class="accordion-icon">▼</span></div>
+<div class="accordion-content"><div class="accordion-body">
+<div class="tf-container" id="s3t3q1">
+<div class="tf-card" onclick="tfSel(this,'s3t3q1','yes')" tabindex="0" role="button"><div class="tf-card-icon">✅</div><div class="tf-card-title">ТАК, заважає</div></div>
+<div class="tf-card" onclick="tfSel(this,'s3t3q1','no')" tabindex="0" role="button"><div class="tf-card-icon">❌</div><div class="tf-card-title">НІ, не заважає</div></div>
+</div>
+</div></div></div>
+<div class="accordion-item">
+<div class="accordion-header" onclick="toggleAccordion(this)"><span>📋 Аналіз власних фінансових можливостей</span><span class="accordion-icon">▼</span></div>
+<div class="accordion-content"><div class="accordion-body">
+<div class="tf-container" id="s3t3q2">
+<div class="tf-card" onclick="tfSel(this,'s3t3q2','yes')" tabindex="0" role="button"><div class="tf-card-icon">✅</div><div class="tf-card-title">ТАК, заважає</div></div>
+<div class="tf-card" onclick="tfSel(this,'s3t3q2','no')" tabindex="0" role="button"><div class="tf-card-icon">❌</div><div class="tf-card-title">НІ, не заважає</div></div>
+</div>
+</div></div></div>
+<div class="accordion-item">
+<div class="accordion-header" onclick="toggleAccordion(this)"><span>📋 Тиск оточення («усі купують, і ти бери»)</span><span class="accordion-icon">▼</span></div>
+<div class="accordion-content"><div class="accordion-body">
+<div class="tf-container" id="s3t3q3">
+<div class="tf-card" onclick="tfSel(this,'s3t3q3','yes')" tabindex="0" role="button"><div class="tf-card-icon">✅</div><div class="tf-card-title">ТАК, заважає</div></div>
+<div class="tf-card" onclick="tfSel(this,'s3t3q3','no')" tabindex="0" role="button"><div class="tf-card-icon">❌</div><div class="tf-card-title">НІ, не заважає</div></div>
+</div>
+</div></div></div>
+<div class="accordion-item">
+<div class="accordion-header" onclick="toggleAccordion(this)"><span>📋 Порівняння варіантів і їхніх наслідків</span><span class="accordion-icon">▼</span></div>
+<div class="accordion-content"><div class="accordion-body">
+<div class="tf-container" id="s3t3q4">
+<div class="tf-card" onclick="tfSel(this,'s3t3q4','yes')" tabindex="0" role="button"><div class="tf-card-icon">✅</div><div class="tf-card-title">ТАК, заважає</div></div>
+<div class="tf-card" onclick="tfSel(this,'s3t3q4','no')" tabindex="0" role="button"><div class="tf-card-icon">❌</div><div class="tf-card-title">НІ, не заважає</div></div>
+</div>
+</div></div></div>
+<div id="s3t3f" class="feedback" style="display:none"></div>
+<div class="navigation"><button class="btn btn-secondary" onclick="showS3('s3t2')">← Назад</button><button class="btn btn-primary" onclick="chkAllTF('s3t3',{s3t3q1:'yes',s3t3q2:'no',s3t3q3:'yes',s3t3q4:'no'},'step3_task3')">✓ Завершити</button><button class="btn btn-success" onclick="goToStep(4)">Далі: Крок 4 →</button></div>
+</section>
+</main>
+<!-- КРОК 4: ФІНАНСОВІ РИЗИКИ -->
+<main class="container hidden" id="step4Page">
+<div class="step-header"><div class="step-header-top"><h2 class="step-title">⚠️ Крок 4. Фінансові ризики</h2><span class="step-badge">2 завдання</span></div></div>
+<section class="card" id="s4Theory">
+<h2>📖 Теоретичний блок</h2>
+<div class="theory-compact" style="background:linear-gradient(135deg,#fee2e2,#fecaca);border-color:#fca5a5">
+<h4 style="color:#991b1b">⚠️ Фінансовий ризик</h4>
+<p><strong>Фінансовий ризик</strong> — це ймовірність втрати грошей, майна або погіршення фінансового становища внаслідок певних подій чи необдуманих рішень.</p>
+<p>Щоб зберегти гроші, важливо розпізнавати фінансові ризики та уникати ситуацій, які можуть до них призвести.</p>
+</div>
+<h3 style="margin:24px 0 16px;color:var(--primary)">🚨 4 основні групи ризиків через власні рішення</h3>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin:16px 0">
+<div style="background:linear-gradient(135deg,#fee2e2,#fecaca);padding:16px;border-radius:12px;border-left:4px solid var(--danger)">
+<div style="font-size:28px">💳</div>
+<div style="font-weight:700;color:#991b1b;margin:6px 0">НЕОБДУМАНІ КРЕДИТИ</div>
+<div style="font-size:13px;color:var(--text)"><strong>Причина:</strong> позика без оцінки своїх можливостей.<br><strong>Наслідки:</strong> борги, відсотки, штрафи.</div>
+</div>
+<div style="background:linear-gradient(135deg,#fef3c7,#fde68a);padding:16px;border-radius:12px;border-left:4px solid var(--warning)">
+<div style="font-size:28px">🛍️</div>
+<div style="font-weight:700;color:#78350f;margin:6px 0">НАДМІРНІ ВИТРАТИ</div>
+<div style="font-size:13px;color:var(--text)"><strong>Причина:</strong> імпульсивні покупки.<br><strong>Наслідки:</strong> нестача грошей, борги.</div>
+</div>
+<div style="background:linear-gradient(135deg,#f3e8ff,#ede9fe);padding:16px;border-radius:12px;border-left:4px solid #a855f7">
+<div style="font-size:28px">🎰</div>
+<div style="font-weight:700;color:#6d28d9;margin:6px 0">АЗАРТНІ ІГРИ</div>
+<div style="font-size:13px;color:var(--text)"><strong>Причина:</strong> спроба швидко збагатитися.<br><strong>Наслідки:</strong> втрата грошей, залежність.</div>
+</div>
+<div style="background:linear-gradient(135deg,#dbeafe,#bfdbfe);padding:16px;border-radius:12px;border-left:4px solid var(--accent)">
+<div style="font-size:28px">📈</div>
+<div style="font-weight:700;color:#1e40af;margin:6px 0">СУМНІВНІ ІНВЕСТИЦІЇ</div>
+<div style="font-size:13px;color:var(--text)"><strong>Причина:</strong> обіцянки високого прибутку без ризику.<br><strong>Наслідки:</strong> шахрайство, втрата грошей.</div>
+</div>
+</div>
+<div class="key-point">💡 <strong>Зменшити ризики допомагають:</strong> планування витрат, створення резерву, перевірка фінансових пропозицій та обережне користування кредитами.</div>
+<div class="navigation"><button class="btn btn-secondary" onclick="goToMainPage()">← До змісту</button><button class="btn btn-primary" onclick="showS4('s4t1')">Далі: Завдання 1 →</button></div>
+</section>
+<section class="card hidden" id="s4t1">
+<h2>🧩 Завдання 1. Класифікуй фінансові ризики</h2>
+<div class="feedback feedback-warning mb-24">
+<strong>📌 Інструкція:</strong> Розподіли ситуації за типами фінансових ризиків. Натисни на картку → вона підсвітиться жовтим → натисни на потрібну категорію.
+</div>
+<div class="classify-grid" style="grid-template-columns:1fr 1fr">
+<div class="classify-col credits" data-cat="credits" onclick="classifyRiskTap(this)"><h4>💳 НЕОБДУМАНІ КРЕДИТИ</h4><div id="riskCredits"></div></div>
+<div class="classify-col spending" data-cat="spending" onclick="classifyRiskTap(this)"><h4>🛍️ НАДМІРНІ ВИТРАТИ</h4><div id="riskSpending"></div></div>
+<div class="classify-col gambling" data-cat="gambling" onclick="classifyRiskTap(this)"><h4>🎰 АЗАРТНІ ІГРИ</h4><div id="riskGambling"></div></div>
+<div class="classify-col invest" data-cat="invest" onclick="classifyRiskTap(this)"><h4>📈 СУМНІВНІ ІНВЕСТИЦІЇ</h4><div id="riskInvest"></div></div>
+</div>
+<div style="background:#fff;border:2px solid var(--border);border-radius:12px;padding:16px;margin-top:16px">
+<h4 style="color:var(--primary);margin-bottom:12px">📋 Ситуації (натисни, щоб обрати)</h4>
+<div id="riskBank"></div>
+</div>
+<div style="text-align:center;margin-top:12px"><button class="budget-reset" onclick="resetRiskClassify()">🔄 Почати спочатку</button></div>
+<div id="s4t1f" class="feedback" style="display:none"></div>
+<div class="navigation"><button class="btn btn-secondary" onclick="showS4('s4Theory')">← Назад</button><button class="btn btn-primary" onclick="chkRiskClassify()">✓ Перевірити</button><button class="btn btn-success" onclick="showS4('s4t2')">Далі →</button></div>
+</section>
+<section class="card hidden" id="s4t2">
+<h2>🎯 Завдання 2. Аналіз наслідків</h2>
+<div class="feedback feedback-warning mb-24">
+<strong>📌 Ситуація:</strong> Данило почав робити ставки на спортивні події. Після програшу він витратив ще більше грошей, сподіваючись відігратися.
+</div>
+<div class="situation-layout">
+<div class="situation-illustration-left">
+<img src="https://res.cloudinary.com/dmydvhkzr/image/upload/v1793101623/30-5_l6kn9o.png" alt="Ставки на спорт" class="situation-img">
+</div>
+<div class="situation-content-right">
+<p style="margin:12px 0;color:var(--text-muted);font-style:italic">🎯 <strong>Який фінансовий ризик тут представлено і які наслідки?</strong></p>
+<div class="task-options" id="s4t2">
+<div class="option" data-correct="false" onclick="selRadio(this,'s4t2')" tabindex="0" role="radio"><div class="option-radio"></div><div class="option-text"><div class="option-label">📈 Сумнівна інвестиція — Данило може отримати великий прибуток</div></div></div>
+<div class="option" data-correct="true" onclick="selRadio(this,'s4t2')" tabindex="0" role="radio"><div class="option-radio"></div><div class="option-text"><div class="option-label">🎰 Азартні ігри — ризик втрати грошей, боргів і залежності</div></div></div>
+<div class="option" data-correct="false" onclick="selRadio(this,'s4t2')" tabindex="0" role="radio"><div class="option-radio"></div><div class="option-text"><div class="option-label">🛍️ Надмірні витрати — Данило просто купує зайві речі</div></div></div>
+<div class="option" data-correct="false" onclick="selRadio(this,'s4t2')" tabindex="0" role="radio"><div class="option-radio"></div><div class="option-text"><div class="option-label">💳 Необдуманий кредит — Данило взяв позику в банку</div></div></div>
+</div>
+<div id="s4t2f" class="feedback" style="display:none"></div>
+</div>
+</div>
+<div class="navigation"><button class="btn btn-secondary" onclick="showS4('s4t1')">← Назад</button><button class="btn btn-primary" onclick="chkRadio('s4t2','s4t2f','step4_task2')">✓ Перевірити</button><button class="btn btn-success" onclick="goToStep(5)">Далі: Крок 5 →</button></div>
+</section>
+</main>
+<!-- КРОК 5: ФІНАНСОВЕ ШАХРАЙСТВО -->
+<main class="container hidden" id="step5Page">
+<div class="step-header"><div class="step-header-top"><h2 class="step-title">🚨 Крок 5. Фінансове шахрайство</h2><span class="step-badge">2 завдання</span></div></div>
+<section class="card" id="s5Theory">
+<h2>📖 Теоретичний блок</h2>
+<div class="theory-compact" style="background:linear-gradient(135deg,#fce7f3,#fbcfe8);border-color:#f9a8d4">
+<h4 style="color:#be185d">🚨 Фінансове шахрайство</h4>
+<p><strong>Шахрайство</strong> — це зовнішня загроза фінансовій безпеці. Шахраї використовують різні способи, щоб отримати гроші або особисті дані.</p>
+<p>Важливо знати ознаки шахрайства та вміти захищати себе.</p>
+</div>
+<h3 style="margin:24px 0 16px;color:var(--primary)">🕵️ 6 видів фінансового шахрайства</h3>
+<div class="fraud-cards">
+<div class="fraud-card" style="--card-accent:#dc2626" tabindex="0">
+<div class="fraud-card-icon">📧</div>
+<div class="fraud-card-title">Підозріле повідомлення</div>
+<div class="fraud-card-desc">Посилання з вимогою перейти, ввести дані чи отримати «виплату».<br><strong>Ознаки:</strong> незнайомий відправник, помилки, терміновість.</div>
+</div>
+<div class="fraud-card" style="--card-accent:#f59e0b" tabindex="0">
+<div class="fraud-card-icon">📞</div>
+<div class="fraud-card-title">Дзвінок з «банку»</div>
+<div class="fraud-card-desc">Просять повідомити код, пароль або дані картки.<br><strong>Ознаки:</strong> кваплять, невідомий номер.</div>
+</div>
+<div class="fraud-card" style="--card-accent:#a855f7" tabindex="0">
+<div class="fraud-card-icon">🌐</div>
+<div class="fraud-card-title">Підроблений сайт</div>
+<div class="fraud-card-desc">Фальшивий сайт банку чи магазину для викрадення даних.<br><strong>Ознаки:</strong> неправильна адреса, немає https.</div>
+</div>
+<div class="fraud-card" style="--card-accent:#2563eb" tabindex="0">
+<div class="fraud-card-icon">💎</div>
+<div class="fraud-card-title">«Легкі гроші»</div>
+<div class="fraud-card-desc">Обіцянки швидкого заробітку чи великого прибутку.<br><strong>Ознаки:</strong> вимагають передоплату, тиснуть на емоції.</div>
+</div>
+<div class="fraud-card" style="--card-accent:#16a34a" tabindex="0">
+<div class="fraud-card-icon">🎁</div>
+<div class="fraud-card-title">Фальшивий виграш / акція</div>
+<div class="fraud-card-desc">Повідомлення про виграш без твоєї участі.<br><strong>Ознаки:</strong> просять оплатити «комісію» за приз.</div>
+</div>
+<div class="fraud-card" style="--card-accent:#0891b2" tabindex="0">
+<div class="fraud-card-icon">🆘</div>
+<div class="fraud-card-title">Прохання про допомогу / підроблений продавець</div>
+<div class="fraud-card-desc">Шахраї видають себе за знайому людину або продають неіснуючі товари.<br><strong>Ознаки:</strong> терміновість, новий акаунт, підозріло низька ціна.</div>
+</div>
+</div>
+<div class="key-point">💡 <strong>Головне правило:</strong> Шахраї завжди використовують поспіх, страх, довіру або бажання швидко отримати гроші.</div>
+<div class="navigation"><button class="btn btn-secondary" onclick="goToMainPage()">← До змісту</button><button class="btn btn-primary" onclick="showS5('s5t1')">Далі: Завдання 1 →</button></div>
+</section>
+<section class="card hidden" id="s5t1">
+<h2>🕵️ Завдання 1. Розпізнай вид шахрайства</h2>
+<div class="feedback feedback-warning mb-24">
+<strong>📌 Ситуації:</strong> Для кожної ситуації визнач, який вид шахрайства описано.
+</div>
+<div class="accordion-item">
+<div class="accordion-header" onclick="toggleAccordion(this)"><span>📧 Ігор отримав повідомлення: «Ваша картка заблокована. Перейдіть за посиланням, щоб підтвердити дані».</span><span class="accordion-icon">▼</span></div>
+<div class="accordion-content"><div class="accordion-body">
+<div class="task-options" id="s5t1q1">
+<div class="option" data-correct="true" onclick="selRadio(this,'s5t1q1')" tabindex="0" role="radio"><div class="option-radio"></div><div class="option-text"><div class="option-label">📧 Підозріле повідомлення / підроблений сайт</div></div></div>
+<div class="option" data-correct="false" onclick="selRadio(this,'s5t1q1')" tabindex="0" role="radio"><div class="option-radio"></div><div class="option-text"><div class="option-label">📞 Дзвінок з «банку»</div></div></div>
+<div class="option" data-correct="false" onclick="selRadio(this,'s5t1q1')" tabindex="0" role="radio"><div class="option-radio"></div><div class="option-text"><div class="option-label">🎁 Фальшивий виграш / акція</div></div></div>
+</div>
+</div></div></div>
+<div class="accordion-item">
+<div class="accordion-header" onclick="toggleAccordion(this)"><span>🎁 Марії зателефонували: «Вітаємо! Ви виграли 20 000 грн! Щоб отримати приз, сплатіть комісію 500 грн».</span><span class="accordion-icon">▼</span></div>
+<div class="accordion-content"><div class="accordion-body">
+<div class="task-options" id="s5t1q2">
+<div class="option" data-correct="false" onclick="selRadio(this,'s5t1q2')" tabindex="0" role="radio"><div class="option-radio"></div><div class="option-text"><div class="option-label">💎 «Легкі гроші»</div></div></div>
+<div class="option" data-correct="true" onclick="selRadio(this,'s5t1q2')" tabindex="0" role="radio"><div class="option-radio"></div><div class="option-text"><div class="option-label">🎁 Фальшивий виграш / акція</div></div></div>
+<div class="option" data-correct="false" onclick="selRadio(this,'s5t1q2')" tabindex="0" role="radio"><div class="option-radio"></div><div class="option-text"><div class="option-label">📧 Підозріле повідомлення</div></div></div>
+</div>
+</div></div></div>
+<div class="accordion-item">
+<div class="accordion-header" onclick="toggleAccordion(this)"><span>🆘 Назар побачив оголошення: «Привіт! Я Марія. Продаю квитки на концерт дешевше, ніж на сайті. Пиши в особисті повідомлення».</span><span class="accordion-icon">▼</span></div>
+<div class="accordion-content"><div class="accordion-body">
+<div class="task-options" id="s5t1q3">
+<div class="option" data-correct="false" onclick="selRadio(this,'s5t1q3')" tabindex="0" role="radio"><div class="option-radio"></div><div class="option-text"><div class="option-label">📞 Дзвінок з «банку»</div></div></div>
+<div class="option" data-correct="true" onclick="selRadio(this,'s5t1q3')" tabindex="0" role="radio"><div class="option-radio"></div><div class="option-text"><div class="option-label">🆘 Просьба про допомогу / підроблений продавець</div></div></div>
+<div class="option" data-correct="false" onclick="selRadio(this,'s5t1q3')" tabindex="0" role="radio"><div class="option-radio"></div><div class="option-text"><div class="option-label">🌐 Підроблений сайт</div></div></div>
+</div>
+</div></div></div>
+<div id="s5t1f" class="feedback" style="display:none"></div>
+<div class="navigation"><button class="btn btn-secondary" onclick="showS5('s5Theory')">← Назад</button><button class="btn btn-primary" onclick="chkAllRadio('s5t1',{s5t1q1:'📧 Підозріле повідомлення / підроблений сайт',s5t1q2:'🎁 Фальшивий виграш / акція',s5t1q3:'🆘 Просьба про допомогу / підроблений продавець'},'step5_task1')">✓ Завершити</button><button class="btn btn-success" onclick="showS5('s5t2')">Далі →</button></div>
+</section>
+<section class="card hidden" id="s5t2">
+<h2>✅❌ Завдання 2. Міфи та факти про шахрайство</h2>
+<div class="feedback feedback-warning mb-24"><strong>📌 Інструкція:</strong> Визнач, які твердження є МІФАМИ, а які — ФАКТАМИ.</div>
+<div class="accordion-item">
+<div class="accordion-header" onclick="toggleAccordion(this)"><span>📋 «Якщо повідомлення нібито від банку, усі дані можна одразу надсилати у відповідь»</span><span class="accordion-icon">▼</span></div>
+<div class="accordion-content"><div class="accordion-body">
+<div class="tf-container" id="s5t2q1">
+<div class="tf-card" onclick="tfSel(this,'s5t2q1','myth')" tabindex="0" role="button"><div class="tf-card-icon">🚫</div><div class="tf-card-title">МІФ</div></div>
+<div class="tf-card" onclick="tfSel(this,'s5t2q1','fact')" tabindex="0" role="button"><div class="tf-card-icon">✅</div><div class="tf-card-title">ФАКТ</div></div>
+</div>
+</div></div></div>
+<div class="accordion-item">
+<div class="accordion-header" onclick="toggleAccordion(this)"><span>📋 «PIN-код, пароль і коди підтвердження не можна повідомляти стороннім»</span><span class="accordion-icon">▼</span></div>
+<div class="accordion-content"><div class="accordion-body">
+<div class="tf-container" id="s5t2q2">
+<div class="tf-card" onclick="tfSel(this,'s5t2q2','myth')" tabindex="0" role="button"><div class="tf-card-icon">🚫</div><div class="tf-card-title">МІФ</div></div>
+<div class="tf-card" onclick="tfSel(this,'s5t2q2','fact')" tabindex="0" role="button"><div class="tf-card-icon">✅</div><div class="tf-card-title">ФАКТ</div></div>
+</div>
+</div></div></div>
+<div class="accordion-item">
+<div class="accordion-header" onclick="toggleAccordion(this)"><span>📋 «Азартні ігри можуть бути надійним способом заробітку»</span><span class="accordion-icon">▼</span></div>
+<div class="accordion-content"><div class="accordion-body">
+<div class="tf-container" id="s5t2q3">
+<div class="tf-card" onclick="tfSel(this,'s5t2q3','myth')" tabindex="0" role="button"><div class="tf-card-icon">🚫</div><div class="tf-card-title">МІФ</div></div>
+<div class="tf-card" onclick="tfSel(this,'s5t2q3','fact')" tabindex="0" role="button"><div class="tf-card-icon">✅</div><div class="tf-card-title">ФАКТ</div></div>
+</div>
+</div></div></div>
+<div class="accordion-item">
+<div class="accordion-header" onclick="toggleAccordion(this)"><span>📋 «Фінансовий резерв допомагає в непередбачених ситуаціях»</span><span class="accordion-icon">▼</span></div>
+<div class="accordion-content"><div class="accordion-body">
+<div class="tf-container" id="s5t2q4">
+<div class="tf-card" onclick="tfSel(this,'s5t2q4','myth')" tabindex="0" role="button"><div class="tf-card-icon">🚫</div><div class="tf-card-title">МІФ</div></div>
+<div class="tf-card" onclick="tfSel(this,'s5t2q4','fact')" tabindex="0" role="button"><div class="tf-card-icon">✅</div><div class="tf-card-title">ФАКТ</div></div>
+</div>
+</div></div></div>
+<div id="s5t2f" class="feedback" style="display:none"></div>
+<div class="navigation"><button class="btn btn-secondary" onclick="showS5('s5t1')">← Назад</button><button class="btn btn-primary" onclick="chkAllTF('s5t2',{s5t2q1:'myth',s5t2q2:'fact',s5t2q3:'myth',s5t2q4:'fact'},'step5_task2')">✓ Завершити</button><button class="btn btn-success" onclick="goToStep(6)">Далі: Крок 6 →</button></div>
+</section>
+</main>
+<!-- КРОК 6: ЯК ЗБЕРЕГТИ ГРОШІ -->
+<main class="container hidden" id="step6Page">
+<div class="step-header"><div class="step-header-top"><h2 class="step-title">🛡️ Крок 6. Як зберегти свої гроші</h2><span class="step-badge">2 завдання</span></div></div>
+<section class="card" id="s6Theory">
+<h2>📖 Теоретичний блок</h2>
+<div class="theory-compact" style="background:linear-gradient(135deg,#dcfce7,#bbf7d0);border-color:#86efac">
+<h4 style="color:#166534">🛡️ Фінансова безпека</h4>
+<p>Фінансова безпека залежить не лише від розміру доходів, а й від того, наскільки відповідально людина користується грошима, захищає особисті дані та оцінює можливі ризики.</p>
+<p>Дотримання простих правил допомагає уникати зайвих витрат, надмірних боргів і втрат через шахрайство.</p>
+</div>
+<h3 style="margin:24px 0 16px;color:var(--primary)">🛡️ 6 правил фінансової безпеки</h3>
+<div class="rules-grid">
+<div class="rule-card" style="border-left-color:#16a34a"><h5>📊 Плануйте бюджет</h5><p>Розподіляйте доходи між необхідними витратами, заощадженнями та бажаннями.</p></div>
+<div class="rule-card" style="border-left-color:#2563eb"><h5>🏦 Створюйте резерв</h5><p>Регулярно відкладайте частину доходу (хоча б 10%).</p></div>
+<div class="rule-card" style="border-left-color:#f59e0b"><h5>💳 Уникайте зайвих боргів</h5><p>Перед кредитом оцініть його вартість і можливість повернення.</p></div>
+<div class="rule-card" style="border-left-color:#dc2626"><h5>🚫 Не довіряйте надто вигідним пропозиціям</h5><p>Обіцянкам швидкого прибутку й підозрілим знижкам.</p></div>
+<div class="rule-card" style="border-left-color:#a855f7"><h5>🎰 Уникайте ризикованих способів заробітку</h5><p>Азартні ігри, сумнівні ставки, онлайн-казино.</p></div>
+<div class="rule-card" style="border-left-color:#0891b2"><h5>🔐 Захищайте гроші й дані</h5><p>Не повідомляйте PIN-код, паролі та коди підтвердження.</p></div>
+</div>
+<div class="navigation"><button class="btn btn-secondary" onclick="goToMainPage()">← До змісту</button><button class="btn btn-primary" onclick="showS6('s6t1')">Далі: Завдання 1 →</button></div>
+</section>
+<section class="card hidden" id="s6t1">
+<h2>🛡️ Завдання 1. Обери правила фінансової безпеки</h2>
+<div class="feedback feedback-warning mb-24"><strong>📌 Питання:</strong> Обери всі дії, які допомагають безпечно та відповідально поводитися з грошима.</div>
+<div class="task-options" id="s6t1">
+<div class="option" data-correct="true" onclick="tog(this)" tabindex="0" role="checkbox"><div class="option-checkbox"></div><div class="option-text"><div class="option-label">🏦 Створюю фінансовий резерв</div></div></div>
+<div class="option" data-correct="false" onclick="tog(this)" tabindex="0" role="checkbox"><div class="option-checkbox"></div><div class="option-text"><div class="option-label">💳 Брати кредит на все, що сподобається</div></div></div>
+<div class="option" data-correct="true" onclick="tog(this)" tabindex="0" role="checkbox"><div class="option-checkbox"></div><div class="option-text"><div class="option-label">🔐 Не розголошую паролі, PIN-коди та коди підтвердження</div></div></div>
+<div class="option" data-correct="true" onclick="tog(this)" tabindex="0" role="checkbox"><div class="option-checkbox"></div><div class="option-text"><div class="option-label">🧠 Обмірковую покупки та уникаю імпульсивних витрат</div></div></div>
+<div class="option" data-correct="false" onclick="tog(this)" tabindex="0" role="checkbox"><div class="option-checkbox"></div><div class="option-text"><div class="option-label">🎰 Грати в азартні ігри для швидкого заробітку</div></div></div>
+<div class="option" data-correct="true" onclick="tog(this)" tabindex="0" role="checkbox"><div class="option-checkbox"></div><div class="option-text"><div class="option-label">📊 Планую доходи й витрати</div></div></div>
+</div>
+<div id="s6t1f" class="feedback" style="display:none"></div>
+<div class="navigation"><button class="btn btn-secondary" onclick="showS6('s6Theory')">← Назад</button><button class="btn btn-primary" onclick="chkMulti('s6t1','s6t1f',4,'step6_task1')">✓ Перевірити</button><button class="btn btn-success" onclick="showS6('s6t2')">Далі →</button></div>
+</section>
+<section class="card hidden" id="s6t2">
+<h2>🎯 Завдання 2. Ситуація: що робити?</h2>
+<div class="feedback feedback-warning mb-24">
+<strong>📌 Ситуація:</strong> Тобі прийшло SMS: «Ваша картка заблокована. Перейдіть за посиланням bank-secure.com/verify, щоб підтвердити дані».
+</div>
+<div class="situation-layout">
+<div class="situation-illustration-left">
+<img src="https://res.cloudinary.com/dmydvhkzr/image/upload/v1793101618/30-6_ctkcgo.png" alt="Підозріле SMS" class="situation-img">
+</div>
+<div class="situation-content-right">
+<p style="margin:12px 0;color:var(--text-muted);font-style:italic">🎯 <strong>Які твої правильні дії?</strong></p>
+<div class="task-options" id="s6t2">
+<div class="option" data-correct="true" onclick="tog(this)" tabindex="0" role="checkbox"><div class="option-checkbox"></div><div class="option-text"><div class="option-label">🚫 Не переходити за підозрілим посиланням</div></div></div>
+<div class="option" data-correct="true" onclick="tog(this)" tabindex="0" role="checkbox"><div class="option-checkbox"></div><div class="option-text"><div class="option-label">📞 Самостійно зателефонувати в банк за офіційним номером</div></div></div>
+<div class="option" data-correct="false" onclick="tog(this)" tabindex="0" role="checkbox"><div class="option-checkbox"></div><div class="option-text"><div class="option-label">🔗 Негайно перейти за посиланням і ввести дані</div></div></div>
+<div class="option" data-correct="true" onclick="tog(this)" tabindex="0" role="checkbox"><div class="option-checkbox"></div><div class="option-text"><div class="option-label">👨‍👩‍👧 Порадитися з дорослими</div></div></div>
+<div class="option" data-correct="true" onclick="tog(this)" tabindex="0" role="checkbox"><div class="option-checkbox"></div><div class="option-text"><div class="option-label">🔐 Не повідомляти PIN, CVV та паролі</div></div></div>
+</div>
+<div id="s6t2f" class="feedback" style="display:none"></div>
+</div>
+</div>
+<div class="navigation"><button class="btn btn-secondary" onclick="showS6('s6t1')">← Назад</button><button class="btn btn-primary" onclick="chkMulti('s6t2','s6t2f',4,'step6_task2')">✓ Перевірити</button><button class="btn btn-success" onclick="goToStep(7)">Далі: Самооцінювання →</button></div>
+</section>
+</main>
+<!-- КРОК 7: САМООЦІНЮВАННЯ -->
+<main class="container hidden" id="step7Page">
+<div class="step7-header"><h2>🎉 Вітаємо! Ти завершив(ла) параграф!</h2><p>Час дізнатися свій рівень</p></div>
+<div class="card"><h2>⭐ Оцініть свої вміння</h2>
+<div class="skill-eval"><div class="skill-title">💵 Я можу раціонально розподіляти власні гроші</div><div class="star-rating" data-skill="1"><span class="star" onclick="rate(1,1)">★</span><span class="star" onclick="rate(1,2)">★</span><span class="star" onclick="rate(1,3)">★</span><span class="star" onclick="rate(1,4)">★</span><span class="star" onclick="rate(1,5)">★</span></div></div>
+<div class="skill-eval"><div class="skill-title">🧠 Я вмію ухвалювати обдумані фінансові рішення</div><div class="star-rating" data-skill="2"><span class="star" onclick="rate(2,1)">★</span><span class="star" onclick="rate(2,2)">★</span><span class="star" onclick="rate(2,3)">★</span><span class="star" onclick="rate(2,4)">★</span><span class="star" onclick="rate(2,5)">★</span></div></div>
+<div class="skill-eval"><div class="skill-title">⚠️ Я розпізнаю фінансові ризики</div><div class="star-rating" data-skill="3"><span class="star" onclick="rate(3,1)">★</span><span class="star" onclick="rate(3,2)">★</span><span class="star" onclick="rate(3,3)">★</span><span class="star" onclick="rate(3,4)">★</span><span class="star" onclick="rate(3,5)">★</span></div></div>
+<div class="skill-eval"><div class="skill-title">🚨 Я можу розпізнати фінансове шахрайство</div><div class="star-rating" data-skill="4"><span class="star" onclick="rate(4,1)">★</span><span class="star" onclick="rate(4,2)">★</span><span class="star" onclick="rate(4,3)">★</span><span class="star" onclick="rate(4,4)">★</span><span class="star" onclick="rate(4,5)">★</span></div></div>
+<div class="skill-eval"><div class="skill-title">🛡️ Я застосовую правила фінансової безпеки</div><div class="star-rating" data-skill="5"><span class="star" onclick="rate(5,1)">★</span><span class="star" onclick="rate(5,2)">★</span><span class="star" onclick="rate(5,3)">★</span><span class="star" onclick="rate(5,4)">★</span><span class="star" onclick="rate(5,5)">★</span></div></div>
+</div>
+<div class="stats-grid">
+<div class="stat-card"><div class="stat-value" id="statTasks">0/12</div><div class="stat-label">✅ Виконано</div></div>
+<div class="stat-card"><div class="stat-value" id="statCorrect">0</div><div class="stat-label">🎯 Правильних</div></div>
+<div class="stat-card"><div class="stat-value" id="statSteps">0/6</div><div class="stat-label">📍 Кроків</div></div>
+<div class="stat-card"><div class="stat-value" id="statAccuracy">0%</div><div class="stat-label">🏅 Точність</div></div>
+</div>
+<div class="progress-circle-container"><div class="progress-circle" id="progressCircle"><div class="progress-circle-inner"><div class="circle-percentage" id="circlePercentage">0%</div><div class="circle-label">Прогрес</div></div></div></div>
+<div style="text-align:center"><div class="level-badge"><div class="level-badge-icon">⭐</div><div><div class="level-badge-title" id="finalLevelTitle">Початківець</div><div class="level-badge-desc" id="finalLevelDesc">⭐☆☆☆☆</div></div></div></div>
+<div class="tip-card">💡 <strong>Фінансова грамотність — це щоденна відповідальність.</strong><br>🌱 Кожне твоє рішення впливає на майбутнє. Дбай про власну фінансову безпеку вже сьогодні!</div>
+<div class="navigation"><button class="btn btn-warning" onclick="resetProgress()">🔄 Пройти ще раз</button><button class="btn btn-primary" onclick="goToMainPage()">🏠 На головну</button></div>
+</main>
+<!-- МОДАЛКИ -->
+<div class="modal-overlay" id="progressModal" role="dialog" aria-modal="true" aria-labelledby="pTitle">
+<div class="modal"><div class="modal-header"><h2 id="pTitle">📊 Мій прогрес</h2><button class="modal-close" onclick="closeModal('progressModal')" aria-label="Закрити">✕</button></div>
+<div class="text-center"><div style="font-size:48px;margin-bottom:16px" id="mEmoji">⭐☆☆☆☆</div><h3 style="color:var(--primary);margin-bottom:24px" id="mName">Початківець</h3>
+<div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:20px">
+<div style="background:var(--bg);padding:14px;border-radius:12px"><div style="font-size:24px;font-weight:700;color:var(--accent)" id="mT">0/12</div><div style="font-size:12px;color:var(--text-muted)">Завдань</div></div>
+<div style="background:var(--bg);padding:14px;border-radius:12px"><div style="font-size:24px;font-weight:700;color:var(--success)" id="mC">0</div><div style="font-size:12px;color:var(--text-muted)">Правильних</div></div>
+<div style="background:var(--bg);padding:14px;border-radius:12px"><div style="font-size:24px;font-weight:700;color:var(--warning)" id="mS">0/6</div><div style="font-size:12px;color:var(--text-muted)">Кроків</div></div>
+<div style="background:var(--bg);padding:14px;border-radius:12px"><div style="font-size:24px;font-weight:700;color:var(--primary)" id="mA">0%</div><div style="font-size:12px;color:var(--text-muted)">Точність</div></div>
+</div>
+<div style="background:var(--border);height:12px;border-radius:6px;overflow:hidden;margin-bottom:12px"><div id="mBar" style="height:100%;background:linear-gradient(90deg,var(--accent),var(--success));width:0%;transition:width .5s"></div></div>
+<p style="font-weight:600;color:var(--primary)">Прогрес: <span id="mP">0%</span></p></div></div></div>
+<div class="modal-overlay" id="helpModal" role="dialog" aria-modal="true" aria-labelledby="hTitle">
+<div class="modal"><div class="modal-header"><h2 id="hTitle">❓ Як працювати</h2><button class="modal-close" onclick="closeModal('helpModal')" aria-label="Закрити">✕</button></div>
+<div class="feature-list">
+<div data-icon="🚀" style="padding:10px 0 10px 32px;position:relative;border-bottom:1px solid var(--border)"><strong>Як почати?</strong><br>Натисни «Розпочати параграф».</div>
+<div data-icon="✅" style="padding:10px 0 10px 32px;position:relative;border-bottom:1px solid var(--border)"><strong>Форми завдань:</strong><br>Тести, tap-to-tap, класифікація, зіставлення, акордеон, правда/брехня, сортування, симулятор бюджету.</div>
+<div data-icon="📱" style="padding:10px 0 10px 32px;position:relative;border-bottom:1px solid var(--border)"><strong>На телефоні:</strong><br>Усі перетягування працюють через прості натискання — обери елемент, потім обери місце.</div>
+<div data-icon="🏆" style="padding:10px 0 10px 32px;position:relative"><strong>Прогрес:</strong><br>Натисни на віджет прогресу для перегляду статистики.</div>
+</div>
+<button class="btn btn-primary mt-24" onclick="closeModal('helpModal')" style="width:100%">Зрозуміло!</button></div></div>
+<script>
+var TOTAL_TASKS = 12;
+var ST = {
+step1: {t:1, c:0, tasks:{task1:0}},
+step2: {t:2, c:0, tasks:{task1:0, task2:0}},
+step3: {t:3, c:0, tasks:{task1:0, task2:0, task3:0}},
+step4: {t:2, c:0, tasks:{task1:0, task2:0}},
+step5: {t:2, c:0, tasks:{task1:0, task2:0}},
+step6: {t:2, c:0, tasks:{task1:0, task2:0}}
+};
+var SC = {1:0, 2:0, 3:0, 4:0, 5:0, 6:0};
+var PT = {c:0, t:TOTAL_TASKS, a:[]};
+var state = {cs:0, sr:[0,0,0,0,0]};
+var tfCompleted = {};
+function addC(id) {
+if (PT.a.indexOf(id) !== -1) return;
+PT.a.push(id);
+PT.c++;
+updST(id);
+updLive();
+saveP();
+}
+function updST(id) {
+var match = id.match(/step(\d+)_(task\d+[a-z]?)/);
+if (!match) return;
+var stepNum = parseInt(match[1]);
+var taskName = match[2];
+var stepKey = "step" + stepNum;
+var s = ST[stepKey];
+if (s && s.tasks.hasOwnProperty(taskName)) {
+s.tasks[taskName] = 1;
+s.c = 0;
+for (var k in s.tasks) { if (s.tasks[k]) s.c++; }
+if (s.c === s.t && !SC[stepNum]) {
+SC[stepNum] = 1;
+showToast("Крок " + stepNum + " завершено!", "🏆");
+}
+}
+updS7();
+}
+function updLive() {
+try {
+var c = 0;
+for (var i = 1; i <= 6; i++) c += ST["step" + i].c;
+var p = Math.min(100, Math.round(c / TOTAL_TASKS * 100));
+var b = document.getElementById("topProgressBar");
+if (b) b.style.width = p + "%";
+var wp = document.getElementById("widgetPercentage");
+if (wp) wp.textContent = p + "%";
+var wt = document.getElementById("widgetTasks");
+if (wt) wt.textContent = c + "/" + TOTAL_TASKS;
+updateWidgetMiniMap();
+renderNav();
+updS7();
+} catch (err) { console.error("Error:", err); }
+}
+function updateWidgetMiniMap() {
+var wb = document.getElementById("widgetMiniMap");
+if (!wb) return;
+wb.innerHTML = "";
+for (var i = 1; i <= 6; i++) {
+var dot = document.createElement("div");
+dot.className = "mini-step";
+if (SC[i]) dot.classList.add("completed");
+else if (i === state.cs) dot.classList.add("current");
+dot.textContent = i;
+wb.appendChild(dot);
+}
+}
+function saveP() {
+try {
+sessionStorage.setItem("s30v1", JSON.stringify({
+PT: {c: PT.c, t: TOTAL_TASKS, a: PT.a},
+ST: ST, SC: SC, state: state
+}));
+} catch (err) { console.error("Error saving:", err); }
+}
+function loadP() {
+try {
+var s = localStorage.getItem("s30v1");
+if (s) {
+var d = JSON.parse(s);
+if (d.PT) { PT.c = d.PT.c || 0; PT.a = d.PT.a || []; }
+if (d.ST) {
+for (var i = 1; i <= 6; i++) {
+if (d.ST["step" + i]) {
+ST["step" + i].c = d.ST["step" + i].c || 0;
+ST["step" + i].tasks = d.ST["step" + i].tasks || ST["step" + i].tasks;
+}
+}
+}
+if (d.SC) { for (var j = 1; j <= 6; j++) SC[j] = d.SC[j] || 0; }
+if (d.state) {
+state.cs = d.state.cs || 0;
+state.sr = d.state.sr || [0,0,0,0,0];
+while (state.sr.length < 5) state.sr.push(0);
+}
+}
+} catch (err) { console.error("Error loading:", err); }
+updLive();
+renderNav();
+}
+var steps = [
+{id:1, icon:"🎯", title:"Стартове завдання", tasks:1},
+{id:2, icon:"💵", title:"Раціональне управління", tasks:2},
+{id:3, icon:"🧠", title:"Фінансові рішення", tasks:3},
+{id:4, icon:"⚠️", title:"Фінансові ризики", tasks:2},
+{id:5, icon:"🚨", title:"Фінансове шахрайство", tasks:2},
+{id:6, icon:"🛡️", title:"Правила безпеки", tasks:2},
+{id:7, icon:"🏆", title:"Самооцінювання", tasks:0}
+];
+function renderNav() {
+var n = document.getElementById("stepNavigation");
+if (!n) return;
+n.innerHTML = "";
+for (var i = 0; i < steps.length; i++) {
+var s = steps[i];
+var d = document.createElement("div");
+d.className = "step-nav-item";
+var td = s.tasks > 0 ? ST["step" + s.id].c : 0;
+var ic = s.tasks > 0 && SC[s.id];
+if (s.id === 7 && SC[6]) d.classList.add("completed");
+else if (ic) d.classList.add("completed");
+else if (i === state.cs - 1) d.classList.add("active");
+d.innerHTML = '<div class="step-nav-number">' + (ic ? "✓" : (i+1)) + '</div><div class="step-nav-content"><div class="step-nav-title">' + s.icon + " " + s.title + '</div><div class="step-nav-status">' + (s.tasks > 0 ? td + "/" + s.tasks + " завдань" : "Фінал") + '</div></div>';
+d.setAttribute("tabindex", "0");
+d.setAttribute("role", "button");
+(function(idx) {
+d.onclick = function() { goToStep(idx + 1); };
+d.onkeydown = function(e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); goToStep(idx + 1); } };
+})(i);
+n.appendChild(d);
+}
+}
+function updS7() {
+var c = 0;
+for (var i = 1; i <= 6; i++) c += ST["step" + i].c;
+var p = Math.min(100, Math.round(c / TOTAL_TASKS * 100));
+var ac = PT.t > 0 ? Math.round(PT.c / PT.t * 100) : 0;
+var cs = 0;
+for (var j = 1; j <= 6; j++) { if (SC[j]) cs++; }
+var e = function(id, v) { var el = document.getElementById(id); if (el) el.textContent = v; };
+e("statTasks", c + "/" + TOTAL_TASKS);
+e("statCorrect", PT.c);
+e("statSteps", cs + "/6");
+e("statAccuracy", ac + "%");
+var ci = document.getElementById("progressCircle");
+if (ci) ci.style.background = "conic-gradient(var(--success) " + p + "%,var(--bg) " + p + "%)";
+var cp = document.getElementById("circlePercentage");
+if (cp) cp.textContent = p + "%";
+var l = "Початківець", em = "⭐☆☆☆☆";
+if (p >= 76) { l = "Експерт з фінансів"; em = "⭐⭐⭐⭐⭐"; }
+else if (p >= 51) { l = "Досвідчений учень"; em = "⭐⭐⭐☆☆"; }
+else if (p >= 26) { l = "Учень"; em = "⭐⭐☆☆☆"; }
+e("finalLevelTitle", l);
+e("finalLevelDesc", em);
+for (var k = 0; k < state.sr.length; k++) { if (state.sr[k] > 0) rate(k + 1, state.sr[k]); }
+}
+function hideAll() {
+var pages = ["mainPage","step1Page","step2Page","step3Page","step4Page","step5Page","step6Page","step7Page"];
+for (var i = 0; i < pages.length; i++) {
+var el = document.getElementById(pages[i]);
+if (el) el.classList.add("hidden");
+}
+}
+function goToMainPage() {
+hideAll();
+document.getElementById("mainPage").classList.remove("hidden");
+document.getElementById("headerTitle").textContent = "💰 § 30. Фінансова грамотність";
+state.cs = 0;
+saveP();
+window.scrollTo({top: 0, behavior: "smooth"});
+}
+function goToStep(n) {
+hideAll();
+var pages = {1:"step1Page",2:"step2Page",3:"step3Page",4:"step4Page",5:"step5Page",6:"step6Page",7:"step7Page"};
+var el = document.getElementById(pages[n]);
+if (el) {
+el.classList.remove("hidden");
+state.cs = n;
+if (n === 2) showS2("s2Theory");
+if (n === 3) showS3("s3Theory");
+if (n === 4) showS4("s4Theory");
+if (n === 5) showS5("s5Theory");
+if (n === 6) showS6("s6Theory");
+if (n === 7) updS7();
+saveP();
+window.scrollTo({top: 0, behavior: "smooth"});
+}
+}
+function showS2(id) {
+["s2Theory","s2t1","s2t2"].forEach(function(s) { var e = document.getElementById(s); if (e) e.classList.add("hidden"); });
+document.getElementById(id).classList.remove("hidden");
+if (id === "s2t1") initBudgetSplit();
+window.scrollTo({top: 0, behavior: "smooth"});
+}
+function showS3(id) {
+["s3Theory","s3t1","s3t2","s3t3"].forEach(function(s) { var e = document.getElementById(s); if (e) e.classList.add("hidden"); });
+document.getElementById(id).classList.remove("hidden");
+if (id === "s3t2") initSort();
+window.scrollTo({top: 0, behavior: "smooth"});
+}
+function showS4(id) {
+["s4Theory","s4t1","s4t2"].forEach(function(s) { var e = document.getElementById(s); if (e) e.classList.add("hidden"); });
+document.getElementById(id).classList.remove("hidden");
+if (id === "s4t1") initRiskClassify();
+window.scrollTo({top: 0, behavior: "smooth"});
+}
+function showS5(id) {
+["s5Theory","s5t1","s5t2"].forEach(function(s) { var e = document.getElementById(s); if (e) e.classList.add("hidden"); });
+document.getElementById(id).classList.remove("hidden");
+window.scrollTo({top: 0, behavior: "smooth"});
+}
+function showS6(id) {
+["s6Theory","s6t1","s6t2"].forEach(function(s) { var e = document.getElementById(s); if (e) e.classList.add("hidden"); });
+document.getElementById(id).classList.remove("hidden");
+window.scrollTo({top: 0, behavior: "smooth"});
+}
+var decisionData = {
+need: {title:"❓ ПОТРЕБА", desc:"Чи справді це необхідно? Чи можна відкласти?", items:["Оціни, чи дійсно річ потрібна","Подумай, чи можна почекати з покупкою","Відокрем потребу від бажання"]},
+opportunity: {title:"💼 МОЖЛИВОСТІ", desc:"Чи вистачає коштів? Чи залишаться гроші на необхідне?", items:["Перевір свій бюджет","Визнач, скільки можеш витратити","Переконайся, що вистачить на обов'язкове"]},
+risk: {title:"⚠️ РИЗИКИ", desc:"Що може піти не так? Чи виникнуть борги?", items:["Оціни можливі ризики","Перевір, чи не потрапиш у борги","Подумай про непередбачені витрати"]},
+consequence: {title:"🎯 НАСЛІДКИ", desc:"Як рішення вплине на майбутнє? Від чого доведеться відмовитися?", items:["Оціни довгострокові наслідки","Визнач, від чого доведеться відмовитися","Порівняй альтернативи"]}
+};
+function showDecision(type) {
+var branches = document.querySelectorAll(".decision-branch");
+for (var i = 0; i < branches.length; i++) branches[i].classList.remove("active");
+var data = decisionData[type];
+var details = document.getElementById("decisionDetails");
+var html = '<h5>' + data.title + '</h5><p style="font-size:14px;color:var(--text);margin-bottom:8px;font-weight:600">' + data.desc + '</p><ul style="list-style:none;padding:0">';
+for (var j = 0; j < data.items.length; j++) html += '<li style="padding:6px 0;font-size:14px;border-bottom:1px solid var(--border)">📌 ' + data.items[j] + '</li>';
+html += '</ul>';
+details.innerHTML = html;
+details.classList.add("active");
+var activeBranch = document.querySelector(".branch-" + type);
+if (activeBranch) activeBranch.classList.add("active");
+}
+var budgetItems = [
+{id:1, text:"👟 Взуття", price:1800, cat:"needs"},
+{id:2, text:"🎨 Курс 3D-дизайну", price:1500, cat:"goals"},
+{id:3, text:"🏦 Фінансовий резерв", price:700, cat:"reserve"},
+{id:4, text:"🎬 Відпочинок з подругою", price:600, cat:"wants"},
+{id:5, text:"🍕 Кафе", price:400, cat:"wants"}
+];
+var budgetState = {selectedItem: null, placed: {}};
+function initBudgetSplit() {
+budgetState = {selectedItem: null, placed: {}};
+var bank = document.getElementById("budgetBank");
+if (!bank) return;
+bank.innerHTML = "";
+["catNeeds","catGoals","catReserve","catWants"].forEach(function(id) { var el = document.getElementById(id); if (el) el.innerHTML = ""; });
+var shuffled = budgetItems.slice().sort(function() { return Math.random() - 0.5; });
+for (var i = 0; i < shuffled.length; i++) {
+var item = shuffled[i];
+var chip = document.createElement("div");
+chip.className = "budget-chip";
+chip.dataset.id = item.id;
+chip.dataset.cat = item.cat;
+chip.dataset.price = item.price;
+chip.innerHTML = '<span>' + item.text + '</span><span class="price">' + item.price + ' грн</span>';
+chip.onclick = (function(el) { return function() { selectBudgetChip(el); }; })(chip);
+bank.appendChild(chip);
+}
+updateBudgetSplitDisplay();
+}
+function selectBudgetChip(el) {
+if (el.classList.contains("placed")) return;
+var allChips = document.querySelectorAll(".budget-chip");
+for (var i = 0; i < allChips.length; i++) allChips[i].classList.remove("selected");
+if (budgetState.selectedItem === el) {
+budgetState.selectedItem = null;
+return;
+}
+budgetState.selectedItem = el;
+el.classList.add("selected");
+showToast("Тепер натисни на категорію", "👆");
+}
+function placeToCat(cat) {
+if (!budgetState.selectedItem) {
+showToast("Спочатку натисни на витрату", "💡");
+return;
+}
+var targetId = {needs:"catNeeds", goals:"catGoals", reserve:"catReserve", wants:"catWants"}[cat];
+var target = document.getElementById(targetId);
+if (!target) return;
+var chip = budgetState.selectedItem;
+var id = chip.dataset.id;
+if (budgetState.placed[id]) {
+var bank = document.getElementById("budgetBank");
+bank.appendChild(chip);
+chip.classList.remove("placed");
+delete budgetState.placed[id];
+}
+chip.classList.remove("selected");
+target.appendChild(chip);
+chip.classList.add("placed");
+budgetState.placed[id] = cat;
+budgetState.selectedItem = null;
+updateBudgetSplitDisplay();
+}
+document.addEventListener("click", function(e) {
+var chip = e.target.closest(".budget-chip");
+if (!chip) return;
+if (!chip.classList.contains("placed")) return;
+if (chip.parentElement.id === "budgetBank") return;
+var bank = document.getElementById("budgetBank");
+bank.appendChild(chip);
+chip.classList.remove("placed");
+var id = chip.dataset.id;
+delete budgetState.placed[id];
+updateBudgetSplitDisplay();
+});
+function updateBudgetSplitDisplay() {
+var totals = {needs:0, goals:0, reserve:0, wants:0};
+var spent = 0;
+for (var id in budgetState.placed) {
+var cat = budgetState.placed[id];
+var chip = document.querySelector('.budget-chip[data-id="' + id + '"]');
+if (chip) {
+var price = parseInt(chip.dataset.price);
+totals[cat] += price;
+spent += price;
+}
+}
+document.getElementById("totalNeeds").textContent = totals.needs + " грн";
+document.getElementById("totalGoals").textContent = totals.goals + " грн";
+document.getElementById("totalReserve").textContent = totals.reserve + " грн";
+document.getElementById("totalWants").textContent = totals.wants + " грн";
+document.getElementById("bsSpent").textContent = spent + " грн";
+}
+function resetBudgetSplit() { initBudgetSplit(); showToast("Почато спочатку!", "🔄"); }
+function chkBudgetSplit() {
+var f = document.getElementById("s2t1f");
+if (!f) return;
+f.style.display = "block";
+var placedCount = Object.keys(budgetState.placed).length;
+if (placedCount < budgetItems.length) {
+f.className = "feedback feedback-warning";
+f.innerHTML = "💡 Розподіли всі витрати! Залишилось: " + (budgetItems.length - placedCount);
+return;
+}
+var ok = true;
+for (var id in budgetState.placed) {
+var chip = document.querySelector('.budget-chip[data-id="' + id + '"]');
+var correctCat = chip.dataset.cat;
+var placedCat = budgetState.placed[id];
+if (correctCat === placedCat) {
+chip.classList.add("correct");
+chip.classList.remove("incorrect");
+} else {
+chip.classList.add("incorrect");
+chip.classList.remove("correct");
+ok = false;
+}
+}
+if (ok) {
+f.className = "feedback feedback-success";
+f.innerHTML = "<strong>✅ Чудово!</strong> Ти правильно розподілив(ла) кошти Марії за категоріями. Це приклад раціонального управління грошима!";
+addC("step2_task1");
+showToast("Завдання виконано!", "🎉");
+} else {
+f.className = "feedback feedback-error";
+f.innerHTML = "<strong>❌ Не зовсім.</strong> Червоним — помилка. Натисни на картку, щоб повернути її в банк, і спробуй ще раз.";
+setTimeout(function() {
+var chips = document.querySelectorAll(".budget-chip");
+for (var i = 0; i < chips.length; i++) chips[i].classList.remove("correct","incorrect");
+}, 4000);
+}
+}
+var sortItems = [
+{id:1, text:"❓ ПОТРЕБА: Чи справді це необхідно?"},
+{id:2, text:"💼 МОЖЛИВОСТІ: Чи вистачає коштів?"},
+{id:3, text:"⚠️ РИЗИКИ: Що може піти не так?"},
+{id:4, text:"🎯 НАСЛІДКИ: Як рішення вплине на майбутнє?"}
+];
+var sortState = {selectedCard: null, slots: [null, null, null, null]};
+function initSort() {
+sortState.selectedCard = null;
+sortState.slots = [null, null, null, null];
+var bank = document.getElementById("sortBank");
+var slotsContainer = document.getElementById("sortSlots");
+if (!bank || !slotsContainer) return;
+bank.innerHTML = "";
+slotsContainer.innerHTML = "";
+var shuffled = sortItems.slice().sort(function() { return Math.random() - 0.5; });
+for (var i = 0; i < shuffled.length; i++) {
+var item = shuffled[i];
+var card = document.createElement("div");
+card.className = "classify-item";
+card.dataset.id = item.id;
+card.innerHTML = '<span>📋</span><span>' + item.text + '</span>';
+card.onclick = (function(id, el) { return function() { selectSortCard(id, el); }; })(item.id, card);
+bank.appendChild(card);
+}
+for (var j = 1; j <= 4; j++) {
+var slot = document.createElement("div");
+slot.className = "sort-slot";
+slot.dataset.slotNum = j;
+slot.innerHTML = '<div class="sort-slot-number">' + j + '</div><div class="sort-slot-placeholder">Натисни сюди, щоб поставити крок #' + j + '</div>';
+slot.onclick = (function(num, el) { return function() { placeToSlot(num, el); }; })(j, slot);
+slotsContainer.appendChild(slot);
+}
+var f = document.getElementById("s3t2f");
+if (f) f.style.display = "none";
+}
+function selectSortCard(id, el) {
+for (var i = 0; i < sortState.slots.length; i++) {
+if (sortState.slots[i] === id) {
+sortState.slots[i] = null;
+renderSlots();
+renderBank();
+return;
+}
+}
+var bankCards = document.querySelectorAll("#sortBank .classify-item");
+for (var k = 0; k < bankCards.length; k++) bankCards[k].classList.remove("selected");
+if (sortState.selectedCard === id) {
+sortState.selectedCard = null;
+return;
+}
+sortState.selectedCard = id;
+el.classList.add("selected");
+showToast("Тепер натисни на слот (1-4)", "👆");
+}
+function placeToSlot(slotNum, slotEl) {
+if (sortState.slots[slotNum - 1] !== null) {
+sortState.slots[slotNum - 1] = null;
+if (sortState.selectedCard !== null) {
+sortState.slots[slotNum - 1] = sortState.selectedCard;
+sortState.selectedCard = null;
+}
+renderSlots();
+renderBank();
+return;
+}
+if (sortState.selectedCard === null) {
+showToast("Спочатку натисни на крок у верхньому блоці", "💡");
+return;
+}
+for (var i = 0; i < sortState.slots.length; i++) {
+if (sortState.slots[i] === sortState.selectedCard) {
+sortState.slots[i] = null;
+}
+}
+sortState.slots[slotNum - 1] = sortState.selectedCard;
+sortState.selectedCard = null;
+renderSlots();
+renderBank();
+}
+function renderSlots() {
+var slotsContainer = document.getElementById("sortSlots");
+if (!slotsContainer) return;
+var slotEls = slotsContainer.querySelectorAll(".sort-slot");
+for (var i = 0; i < slotEls.length; i++) {
+var slotNum = i + 1;
+var itemId = sortState.slots[i];
+if (itemId === null) {
+slotEls[i].classList.remove("filled","correct-pos","incorrect-pos");
+slotEls[i].innerHTML = '<div class="sort-slot-number">' + slotNum + '</div><div class="sort-slot-placeholder">Натисни сюди, щоб поставити крок #' + slotNum + '</div>';
+slotEls[i].onclick = (function(num, el) { return function() { placeToSlot(num, el); }; })(slotNum, slotEls[i]);
+} else {
+var itemData = sortItems.find(function(x) { return x.id === itemId; });
+slotEls[i].classList.add("filled");
+slotEls[i].classList.remove("correct-pos","incorrect-pos");
+slotEls[i].innerHTML = '<div class="sort-slot-number">' + slotNum + '</div><div class="sort-slot-content">' + itemData.text + '</div><button class="sort-slot-remove" aria-label="Повернути">✕</button>';
+slotEls[i].onclick = (function(num, el) { return function(e) {
+if (e.target.classList.contains("sort-slot-remove")) {
+sortState.slots[num - 1] = null;
+renderSlots();
+renderBank();
+return;
+}
+placeToSlot(num, el);
+}; })(slotNum, slotEls[i]);
+}
+}
+}
+function renderBank() {
+var bank = document.getElementById("sortBank");
+if (!bank) return;
+var cards = bank.querySelectorAll(".classify-item");
+for (var i = 0; i < cards.length; i++) {
+var id = parseInt(cards[i].dataset.id);
+var inSlot = sortState.slots.indexOf(id) !== -1;
+cards[i].classList.remove("selected");
+if (inSlot) cards[i].classList.add("selected");
+}
+}
+function resetSort() { initSort(); showToast("Перемішано!", "🔄"); }
+function chkSort() {
+var f = document.getElementById("s3t2f");
+if (!f) return;
+f.style.display = "block";
+var filledCount = 0;
+for (var i = 0; i < sortState.slots.length; i++) {
+if (sortState.slots[i] !== null) filledCount++;
+}
+if (filledCount < 4) {
+f.className = "feedback feedback-warning";
+f.innerHTML = "💡 Заповни всі 4 слоти! Заповнено: " + filledCount + " з 4.";
+return;
+}
+var slotsContainer = document.getElementById("sortSlots");
+var slotEls = slotsContainer.querySelectorAll(".sort-slot");
+var ok = true;
+for (var j = 0; j < sortState.slots.length; j++) {
+slotEls[j].classList.remove("correct-pos","incorrect-pos");
+if (sortState.slots[j] === j + 1) slotEls[j].classList.add("correct-pos");
+else { slotEls[j].classList.add("incorrect-pos"); ok = false; }
+}
+if (ok) {
+f.className = "feedback feedback-success";
+f.innerHTML = "<strong>✅ Чудово!</strong> Алгоритм ухвалення фінансового рішення відновлено правильно: ПОТРЕБА → МОЖЛИВОСТІ → РИЗИКИ → НАСЛІДКИ.";
+addC("step3_task2");
+showToast("Завдання виконано!", "🎉");
+} else {
+f.className = "feedback feedback-error";
+f.innerHTML = "<strong>❌ Не зовсім.</strong> Зеленим — правильна позиція, червоним — потрібно переставити.";
+setTimeout(function() {
+for (var k = 0; k < slotEls.length; k++) slotEls[k].classList.remove("correct-pos","incorrect-pos");
+}, 4000);
+}
+}
+var riskData = [
+{text:"💳 Ігор придбав дорогу техніку в кредит, не з'ясувавши повну вартість та розмір платежів", cat:"credits"},
+{text:"🛍️ Марія часто купує речі під впливом реклами й знижок. Наприкінці місяця їй не вистачає грошей", cat:"spending"},
+{text:"🎰 Данило почав робити ставки на спортивні події. Після програшу він витратив ще більше", cat:"gambling"},
+{text:"📈 Назар побачив рекламу «вигідної інвестиції» з обіцянкою швидкого прибутку без ризику. Переказав гроші, але не зміг їх повернути", cat:"invest"}
+];
+var riskState = {selectedItem: null};
+function initRiskClassify() {
+riskState.selectedItem = null;
+var bank = document.getElementById("riskBank");
+if (!bank) return;
+bank.innerHTML = "";
+["riskCredits","riskSpending","riskGambling","riskInvest"].forEach(function(id) { var el = document.getElementById(id); if (el) el.innerHTML = ""; });
+var shuffled = riskData.slice().sort(function() { return Math.random() - 0.5; });
+for (var i = 0; i < shuffled.length; i++) {
+var item = shuffled[i];
+var card = document.createElement("div");
+card.className = "classify-item";
+card.dataset.cat = item.cat;
+card.innerHTML = '<span>📋</span><span>' + item.text + '</span>';
+card.onclick = (function(el) { return function() { selectRiskItem(el); }; })(card);
+bank.appendChild(card);
+}
+var f = document.getElementById("s4t1f");
+if (f) f.style.display = "none";
+}
+function selectRiskItem(el) {
+var parent = el.parentElement;
+if (parent && parent.id !== "riskBank") {
+document.getElementById("riskBank").appendChild(el);
+el.classList.remove("selected");
+riskState.selectedItem = null;
+return;
+}
+var allItems = document.querySelectorAll(".classify-item");
+for (var i = 0; i < allItems.length; i++) {
+if (allItems[i].parentElement.id !== "riskBank") continue;
+allItems[i].classList.remove("selected");
+}
+if (riskState.selectedItem === el) {
+riskState.selectedItem = null;
+return;
+}
+riskState.selectedItem = el;
+el.classList.add("selected");
+showToast("Тепер натисни на категорію ризику", "👆");
+}
+function classifyRiskTap(colEl) {
+if (event && event.target && event.target.classList && event.target.classList.contains("classify-item")) return;
+if (!riskState.selectedItem) {
+showToast("Спочатку натисни на ситуацію", "💡");
+return;
+}
+var category = colEl.dataset.cat;
+var dropZone = document.getElementById("risk" + category.charAt(0).toUpperCase() + category.slice(1));
+dropZone.appendChild(riskState.selectedItem);
+riskState.selectedItem.classList.remove("selected");
+riskState.selectedItem = null;
+}
+function resetRiskClassify() { initRiskClassify(); showToast("Почато спочатку!", "🔄"); }
+function chkRiskClassify() {
+var f = document.getElementById("s4t1f");
+if (!f) return;
+f.style.display = "block";
+var targets = {riskCredits:"credits", riskSpending:"spending", riskGambling:"gambling", riskInvest:"invest"};
+var totalPlaced = 0;
+var ok = true;
+for (var tid in targets) {
+var el = document.getElementById(tid);
+var cards = el.querySelectorAll(".classify-item");
+totalPlaced += cards.length;
+for (var i = 0; i < cards.length; i++) {
+cards[i].classList.remove("correct","incorrect");
+if (cards[i].dataset.cat !== targets[tid]) {
+cards[i].classList.add("incorrect");
+ok = false;
+} else cards[i].classList.add("correct");
+}
+}
+var bankCards = document.querySelectorAll("#riskBank .classify-item");
+if (bankCards.length > 0) {
+f.className = "feedback feedback-warning";
+f.innerHTML = "💡 Розподіли всі ситуації! Залишилось: " + bankCards.length;
+return;
+}
+if (ok) {
+f.className = "feedback feedback-success";
+f.innerHTML = "<strong>✅ Чудово!</strong> Усі фінансові ризики класифіковано правильно!";
+addC("step4_task1");
+showToast("Завдання виконано!", "🎉");
+} else {
+f.className = "feedback feedback-error";
+f.innerHTML = "<strong>❌ Не зовсім.</strong> Червоним — помилка. Натисни на картку, щоб повернути її в банк.";
+setTimeout(function() {
+var all = document.querySelectorAll(".classify-item");
+for (var k = 0; k < all.length; k++) all[k].classList.remove("correct","incorrect");
+}, 4000);
+}
+}
+function tog(el) {
+if (el.classList.contains("disabled")) return;
+el.classList.toggle("selected");
+}
+function selRadio(el, groupId) {
+if (el.classList.contains("disabled")) return;
+var group = document.getElementById(groupId);
+var opts = group.querySelectorAll(".option");
+for (var i = 0; i < opts.length; i++) opts[i].classList.remove("selected");
+el.classList.add("selected");
+}
+function chkStartTask() {
+var opts = document.querySelectorAll("#s1t1 .option");
+var f = document.getElementById("s1t1f");
+if (!f) return;
+f.style.display = "block";
+var selOpts = [];
+for (var i = 0; i < opts.length; i++) { if (opts[i].classList.contains("selected")) selOpts.push(opts[i]); }
+if (selOpts.length !== 3) {
+f.className = "feedback feedback-warning";
+f.innerHTML = "⚠️ Обери <strong>рівно 3</strong> варіанти зі списку. Зараз обрано: " + selOpts.length + ".";
+return;
+}
+var correctCount = 0;
+for (var j = 0; j < opts.length; j++) {
+var isCorrect = opts[j].dataset.correct === "true";
+var isSelected = opts[j].classList.contains("selected");
+if (isCorrect && isSelected) { opts[j].classList.add("correct"); correctCount++; }
+else if (!isCorrect && isSelected) opts[j].classList.add("incorrect");
+opts[j].classList.add("disabled");
+}
+if (correctCount === 3) {
+f.className = "feedback feedback-success";
+f.innerHTML = "<strong>✅ Чудово!</strong> Ти обрав(ла) три пріоритетні дії: покрити поточні потреби, створити резерв та відкласти на ціль. Це приклад раціонального підходу!";
+addC("step1_task1");
+showToast("Завдання виконано!", "🎉");
+} else {
+f.className = "feedback feedback-error";
+f.innerHTML = "<strong>❌ Не зовсім.</strong> Червоним — помилковий вибір. Пам'ятай: спочатку потреби, потім резерв і цілі, а вже потім — бажання. Уникай імпульсивних рішень.";
+}
+}
+function chkMulti(gid, fid, need, tid) {
+var opts = document.querySelectorAll("#" + gid + " .option");
+var f = document.getElementById(fid);
+if (!f) return;
+f.style.display = "block";
+var selOpts = [];
+for (var i = 0; i < opts.length; i++) { if (opts[i].classList.contains("selected")) selOpts.push(opts[i]); }
+if (selOpts.length !== need) {
+f.className = "feedback feedback-warning";
+f.innerHTML = "⚠️ Обери <strong>" + need + "</strong> варіанти. Зараз обрано: " + selOpts.length + ".";
+return;
+}
+var ok = true;
+for (var j = 0; j < opts.length; j++) {
+var sb = opts[j].dataset.correct === "true";
+var is = opts[j].classList.contains("selected");
+if (sb && is) opts[j].classList.add("correct");
+else if (!sb && is) { opts[j].classList.add("incorrect"); ok = false; }
+else if (sb && !is) ok = false;
+opts[j].classList.add("disabled");
+}
+if (ok) {
+f.className = "feedback feedback-success";
+f.innerHTML = "<strong>✅ Правильно!</strong> Це обґрунтований вибір.";
+addC(tid);
+showToast("Завдання виконано!", "🎉");
+} else {
+f.className = "feedback feedback-error";
+f.innerHTML = "<strong>❌ Не зовсім.</strong> Спробуй ще раз.";
+for (var k = 0; k < opts.length; k++) opts[k].classList.remove("correct","incorrect","disabled");
+}
+}
+function chkRadio(gid, fid, tid) {
+var opts = document.querySelectorAll("#" + gid + " .option");
+var f = document.getElementById(fid);
+if (!f) return;
+f.style.display = "block";
+var selected = null;
+for (var i = 0; i < opts.length; i++) { if (opts[i].classList.contains("selected")) { selected = opts[i]; break; } }
+if (!selected) {
+f.className = "feedback feedback-warning";
+f.innerHTML = "⚠️ Обери один варіант відповіді.";
+return;
+}
+var isCorrect = selected.dataset.correct === "true";
+if (isCorrect) {
+selected.classList.add("correct");
+f.className = "feedback feedback-success";
+f.innerHTML = "<strong>✅ Правильно!</strong>";
+for (var j = 0; j < opts.length; j++) opts[j].classList.add("disabled");
+addC(tid);
+showToast("Завдання виконано!", "🎉");
+} else {
+selected.classList.add("incorrect");
+f.className = "feedback feedback-error";
+f.innerHTML = "<strong>❌ Неправильно.</strong> Спробуй ще раз.";
+}
+}
+function toggleAccordion(header) {
+var item = header.parentElement;
+var wasActive = item.classList.contains("active");
+var parent = item.parentElement;
+var items = parent.querySelectorAll(".accordion-item");
+for (var i = 0; i < items.length; i++) items[i].classList.remove("active");
+if (!wasActive) {
+item.classList.add("active");
+setTimeout(function() {
+if (window.innerWidth <= 768) {
+var rect = item.getBoundingClientRect();
+if (rect.top < 100 || rect.bottom > window.innerHeight) {
+item.scrollIntoView({behavior: "smooth", block: "start"});
+}
+}
+}, 100);
+}
+}
+function chkAllRadio(prefix, answers, tid) {
+var f = document.getElementById(prefix + "f");
+if (!f) return;
+f.style.display = "block";
+var ok = 0;
+var total = Object.keys(answers).length;
+for (var gid in answers) {
+var group = document.getElementById(gid);
+if (!group) continue;
+var selected = group.querySelector(".option.selected");
+if (!selected) continue;
+var label = selected.querySelector(".option-label").textContent.trim();
+if (label === answers[gid]) {
+selected.classList.add("correct");
+ok++;
+} else {
+selected.classList.add("incorrect");
+}
+var opts = group.querySelectorAll(".option");
+for (var i = 0; i < opts.length; i++) opts[i].classList.add("disabled");
+}
+if (ok === total) {
+f.className = "feedback feedback-success";
+f.innerHTML = "<strong>✅ Чудово!</strong> Усі відповіді правильні!";
+addC(tid);
+showToast("Завдання виконано!", "🎉");
+} else {
+f.className = "feedback feedback-error";
+f.innerHTML = "<strong>❌ " + ok + "/" + total + " правильно.</strong> Спробуй ще раз.";
+for (var k in answers) {
+var g = document.getElementById(k);
+if (g) {
+var opts = g.querySelectorAll(".option");
+for (var i = 0; i < opts.length; i++) opts[i].classList.remove("selected","correct","incorrect","disabled");
+}
+}
+}
+}
+function tfSel(el, gid, value) {
+if (el.classList.contains("disabled")) return;
+var cards = document.querySelectorAll("#" + gid + " .tf-card");
+for (var i = 0; i < cards.length; i++) cards[i].classList.remove("selected","correct","incorrect");
+el.classList.add("selected");
+var correctMap = {
+s3t3q1:"yes", s3t3q2:"no", s3t3q3:"yes", s3t3q4:"no",
+s5t2q1:"myth", s5t2q2:"fact", s5t2q3:"myth", s5t2q4:"fact"
+};
+var correct = correctMap[gid] === value;
+if (correct) {
+el.classList.add("correct");
+for (var i = 0; i < cards.length; i++) cards[i].classList.add("disabled");
+tfCompleted[gid] = true;
+} else {
+el.classList.add("incorrect");
+}
+}
+function chkAllTF(prefix, answers, tid) {
+var f = document.getElementById(prefix + "f");
+if (!f) return;
+f.style.display = "block";
+var ok = 0;
+var total = Object.keys(answers).length;
+for (var id in answers) {
+if (tfCompleted[id]) ok++;
+}
+if (ok === total) {
+f.className = "feedback feedback-success";
+f.innerHTML = "<strong>✅ Чудово!</strong> Усі відповіді правильні!";
+addC(tid);
+showToast("Завдання виконано!", "🎉");
+} else {
+f.className = "feedback feedback-warning";
+f.innerHTML = "💡 Відповідай на всі питання (" + ok + "/" + total + "), щоб завершити завдання.";
+}
+}
+function rate(si, r) {
+state.sr[si - 1] = r;
+saveP();
+var c = document.querySelector('.star-rating[data-skill="' + si + '"]');
+if (!c) return;
+var stars = c.querySelectorAll(".star");
+for (var i = 0; i < stars.length; i++) {
+if (i < r) stars[i].classList.add("active");
+else stars[i].classList.remove("active");
+}
+}
+function resetProgress() {
+if (confirm("Почати спочатку? Весь прогрес буде скинуто.")) {
+sessionStorage.removeItem("s30v1");
+localStorage.removeItem("s30v1");
+location.reload();
+}
+}
+function showToast(msg, icon) {
+icon = icon || "✅";
+var c = document.getElementById("toastContainer");
+if (!c) return;
+var t = document.createElement("div");
+t.className = "toast";
+t.innerHTML = '<span class="toast-icon">' + icon + '</span><span class="toast-message">' + msg + '</span>';
+c.appendChild(t);
+setTimeout(function() { t.classList.add("hiding"); setTimeout(function() { t.remove(); }, 400); }, 3000);
+}
+function showProgressModal() {
+updS7();
+document.getElementById("progressModal").classList.add("active");
+var c = 0;
+for (var i = 1; i <= 6; i++) c += ST["step" + i].c;
+var p = Math.min(100, Math.round(c / TOTAL_TASKS * 100));
+var ac = PT.t > 0 ? Math.round(PT.c / PT.t * 100) : 0;
+var cs = 0;
+for (var j = 1; j <= 6; j++) { if (SC[j]) cs++; }
+var e = function(id, v) { var el = document.getElementById(id); if (el) el.textContent = v; };
+e("mT", c + "/" + TOTAL_TASKS);
+e("mC", PT.c);
+e("mS", cs + "/6");
+e("mA", ac + "%");
+e("mP", p + "%");
+var b = document.getElementById("mBar");
+if (b) b.style.width = p + "%";
+var l = "Початківець", em = "⭐☆☆☆☆";
+if (p >= 76) { l = "Експерт з фінансів"; em = "⭐⭐⭐⭐⭐"; }
+else if (p >= 51) { l = "Досвідчений учень"; em = "⭐⭐⭐☆☆"; }
+else if (p >= 26) { l = "Учень"; em = "⭐⭐☆☆☆"; }
+e("mName", l);
+e("mEmoji", em);
+}
+function showHelpModal() { document.getElementById("helpModal").classList.add("active"); }
+function closeModal(id) { document.getElementById(id).classList.remove("active"); }
+var overlays = document.querySelectorAll(".modal-overlay");
+for (var oi = 0; oi < overlays.length; oi++) {
+overlays[oi].addEventListener("click", function(e) { if (e.target === this) this.classList.remove("active"); });
+}
+document.addEventListener("keydown", function(e) {
+if (e.key === "Escape") { var ms = document.querySelectorAll(".modal-overlay.active"); for (var i = 0; i < ms.length; i++) ms[i].classList.remove("active"); }
+});
+document.addEventListener("DOMContentLoaded", function() {
+loadP();
+goToMainPage();
+});
+</script>
+</body>
+</html>
